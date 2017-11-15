@@ -56,8 +56,10 @@ public class MoveAction extends Action {
    * @param currentTime The current time in the animation of the model using this action
    */
   @Override
-  public void applyToShape(int currentTime) {
-    this.shape.setPosition(shape.getPostition().add(dx, dy));
+  public EasyShape applyToShape(int currentTime) {
+    EasyShape clone = shape.clone();
+    clone.setPosition(shape.getPostition().add(dx, dy));
+    return clone;
   }
 
   @Override

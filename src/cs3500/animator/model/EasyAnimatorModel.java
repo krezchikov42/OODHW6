@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cs3500.animator.Action;
 import cs3500.animator.Color;
@@ -21,8 +22,7 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
 
   private ArrayList<Action> actions;
   private ArrayList<EasyShape> shapes;
-  private int time;
-  private int endTime;
+
 
   /**
    * Constructs a instance of this class with a given time period and an initial list of actions and
@@ -32,23 +32,29 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
 
     this.actions = new ArrayList<>();
     this.shapes = new ArrayList<>();
-    this.time = 0;
+
+  }
+
+  private EasyAnimatorModel(ArrayList<Action> actions, ArrayList<EasyShape> shapes) {
+    this.actions = actions;
+    this.shapes = shapes;
   }
 
   @Override
-  public void updateAnimation() {
+  public EasyAnimatorModel updateAnimation(int time) {
+    ArrayList<EasyShape> newShapes = new ArrayList<>();
     for (Action a : this.actions) {
-      if (a.isCurrent(this.time)) {
-        a.applyToShape(this.time);
+      if (a.isCurrent(time)) {
+        newShapes.add(a.applyToShape(time));
       }
     }
-
-    this.time += 1;
+    return new EasyAnimatorModel(actions,newShapes);
   }
 
   @Override
   public boolean animationOver() {
-    return this.time >= this.endTime;
+    //not sure what to do about this
+    return false; //this.time >= this.endTime;
   }
 
   @Override
