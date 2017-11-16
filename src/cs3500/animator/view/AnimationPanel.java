@@ -35,6 +35,5 @@ class AnimationPanel extends JPanel implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     this.revalidate();
     this.repaint();
-    this.model.updateAnimation();
   }
 }
