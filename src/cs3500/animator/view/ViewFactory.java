@@ -1,21 +1,16 @@
 package cs3500.animator.view;
 
+import java.util.List;
+
+import cs3500.animator.Action;
+import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorOperations;
 
 /**
  * Represents a factory that will make a view.
  */
-public class ViewFactory extends AView {
+public class ViewFactory{
 
-  /**
-   * Creates a ViewFactory.
-   *
-   * @param model is the model in the view.
-   * @param rate  is the rate the model will be run at.
-   */
-  public ViewFactory(EasyAnimatorOperations model, float rate) {
-    super(model, rate);
-  }
 
   /**
    * Constructs a view.
@@ -25,13 +20,13 @@ public class ViewFactory extends AView {
    */
   public View create(String s) {
     if (s.equals("text")) {
-      return new TextView(model, rate);
+      return new TextView();
     } else if (s.equals("svg")) {
       //not done
-      return new SVGView(model, rate);
+      return new SVGView();
     } else if (s.equals("visual")) {
       //not done
-      return new VisualView(model, rate);
+      return new VisualView();
     } else {
       throw new IllegalArgumentException("Not Valid View for Factory");
     }

@@ -3,6 +3,7 @@ package cs3500.animator.view;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -11,12 +12,11 @@ import cs3500.animator.model.EasyAnimatorOperations;
 
 class AnimationPanel extends JPanel implements ActionListener {
 
-  public EasyAnimatorOperations model;
+  ArrayList<EasyShape> shapes;
 
-  public AnimationPanel(EasyAnimatorOperations model) {
+  public AnimationPanel(ArrayList<EasyShape> shapes) {
     setSize(800, 600);
     setVisible(true);
-    this.model = model;
   }
 
   public void paintComponent(Graphics g) {
@@ -26,7 +26,7 @@ class AnimationPanel extends JPanel implements ActionListener {
   }
 
   private void modelToPaintFunctionCalls(Graphics g) {
-    for (EasyShape s : this.model.getShapes()) {
+    for (EasyShape s : shapes  ) {
       s.draw(g);
     }
   }

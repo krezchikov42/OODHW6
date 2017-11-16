@@ -4,45 +4,42 @@ package cs3500.animator.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+
+import cs3500.animator.Action;
+import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorOperations;
 
 public class VisualView extends AView {
 
 
-
-  VisualView(EasyAnimatorOperations model, float rate) {
-    super(model, rate);
-  }
+  boolean window;
 
   @Override
-  public void run() {
+  public void run(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
     int time = 0;
+    JPanel animator = null;
+    //makes sure the constructor only happens once
+    if(!window) {
+      JFrame frame = new JFrame();
+       animator = new AnimationPanel(shapes);
 
-    JFrame frame = new JFrame();
-    ActionListener animator = new AnimationPanel(this.model);
-    EasyAnimatorOperations m = this.model;
-
-    frame.setSize(1500, 1000);
-    frame.setMinimumSize(new Dimension(1500, 1000));
-    frame.add((JPanel) animator);
-    frame.setVisible(true);
-    frame.setLayout(new BorderLayout());
-    frame.pack();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    double delay = 1000 / rate;
-
-    Timer timer = new Timer((int) delay, animator);
-    timer.setInitialDelay(0);
-    timer.start();
-    while (!this.model.animationOver()) {
-      time++;
+      frame.setSize(1500, 1000);
+      frame.setMinimumSize(new Dimension(1500, 1000));
+      frame.add((JPanel) animator);
+      frame.setVisible(true);
+      frame.setLayout(new BorderLayout());
+      frame.pack();
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      window = true;
     }
+      animator.validate();
+      animator.repaint();
   }
 }
 
