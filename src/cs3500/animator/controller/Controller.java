@@ -80,7 +80,7 @@ public class Controller {
     }
   }
 
-  private static void runHybridView(EasyAnimatorOperations model, View view) {
+  private static void runViewWithVisualComponent(EasyAnimatorOperations model, View view) {
 
   }
 
