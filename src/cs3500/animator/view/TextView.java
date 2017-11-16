@@ -17,7 +17,7 @@ public class TextView extends AView {
 
 
   @Override
-  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
+  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions, float rate) {
     String ret = "";
     for (EasyShape shape : shapes) {
       ret += shape.getText(rate);

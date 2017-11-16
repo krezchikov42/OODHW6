@@ -11,9 +11,9 @@ import cs3500.animator.EasyShape;
  */
 public abstract class AView implements View {
 
-  
+
   @Override
-  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
+  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions, float rate) {
     throw new UnsupportedOperationException(this.getClass()+" Does not support Text View");
   }
 

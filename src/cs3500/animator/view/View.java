@@ -9,5 +9,5 @@ public interface View {
 
   public void run(ArrayList<EasyShape> shapes, ArrayList<Action> actions);
 
-  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions);
+  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions, float rate);
 }
