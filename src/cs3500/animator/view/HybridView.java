@@ -5,6 +5,7 @@ import cs3500.animator.EasyShape;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,12 +18,12 @@ public class HybridView extends AView {
    *
    * @return an svg representation of the animation.
    */
-  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
+  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions, float rate) {
     String text = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
         + "     xmlns=\"http://www.w3.org/2000/svg\">\n";
 
     for (EasyShape s : shapes) {
-      text += s.getSVG(this.rate);
+      text += s.getSVG(rate);
     }
     text += "\n</svg>";
 
@@ -31,7 +32,7 @@ public class HybridView extends AView {
 
 
   @Override
-  public void run(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
+  public void run(List<EasyShape> shapes) {
     int time = 0;
     JPanel animator = null;
     //makes sure the constructor only happens once

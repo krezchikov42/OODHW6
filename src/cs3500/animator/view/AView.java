@@ -18,7 +18,7 @@ public abstract class AView implements View {
   }
 
   @Override
-  public void run(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
+  public void run(List<EasyShape> shapes) {
     throw new UnsupportedOperationException(this.getClass()+" Does not support Visual View");
   }
 }

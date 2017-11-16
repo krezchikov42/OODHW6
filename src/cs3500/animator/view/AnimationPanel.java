@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import java.util.List;
 import javax.swing.JPanel;
 
 import cs3500.animator.EasyShape;
@@ -12,9 +13,9 @@ import cs3500.animator.model.EasyAnimatorOperations;
 
 class AnimationPanel extends JPanel implements ActionListener {
 
-  ArrayList<EasyShape> shapes;
+  List<EasyShape> shapes;
 
-  public AnimationPanel(ArrayList<EasyShape> shapes) {
+  public AnimationPanel(List<EasyShape> shapes) {
     setSize(800, 600);
     setVisible(true);
   }

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -21,7 +22,7 @@ public class VisualView extends AView {
   boolean window;
 
   @Override
-  public void run(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
+  public void run(List<EasyShape> shapes) {
     int time = 0;
     JPanel animator = null;
     //makes sure the constructor only happens once
