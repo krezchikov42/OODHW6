@@ -24,7 +24,6 @@ public class MoveAction extends Action {
     super(shape, startTime, endTime);
     this.endPos = endPos;
 
-
     this.startPos = startPos;
 
     dx = (endPos.getX() - startPos.getX()) / (endTime - startTime);
@@ -56,10 +55,15 @@ public class MoveAction extends Action {
    * @param currentTime The current time in the animation of the model using this action
    */
   @Override
-  public EasyShape applyToShape(int currentTime) {
+  public void applyToShape(int currentTime) {
     EasyShape clone = shape.clone();
-    clone.setPosition(shape.getPostition().add(dx, dy));
-    return clone;
+    double timeElapsed = currentTime - startTime;
+    double moveDX = timeElapsed * dx;
+    double moveDY = timeElapsed * dy;
+    clone.setPosition(shape.getPostition().add(moveDX, moveDY));
+    shape.setPosition(getStartPos().add(moveDX, moveDY));
+    System.out.print(String.format("ClonePos:%s\n", clone.getPostition().toString()));
+    //return clone;
   }
 
   @Override

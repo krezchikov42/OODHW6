@@ -1,6 +1,5 @@
 package cs3500.animator.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cs3500.animator.Action;
@@ -13,7 +12,7 @@ public abstract class AView implements View {
 
 
   @Override
-  public String getText(ArrayList<EasyShape> shapes, ArrayList<Action> actions, float rate) {
+  public String getText(List<EasyShape> shapes, List<Action> actions, float rate) {
     throw new UnsupportedOperationException(this.getClass()+" Does not support Text View");
   }
 

@@ -58,7 +58,7 @@ public abstract class Action implements Textable, CanBeCloned<Action> {
   /**
    * Applies the action effects to the shape, to be used once per tick.
    */
-  public abstract EasyShape applyToShape(int currentTime);
+  public abstract void applyToShape(int currentTime);
 
   /**
    * Converts this actions's values into a readable english string.

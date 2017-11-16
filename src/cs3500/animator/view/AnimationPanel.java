@@ -11,11 +11,13 @@ import javax.swing.JPanel;
 import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorOperations;
 
-class AnimationPanel extends JPanel implements ActionListener {
+class AnimationPanel extends JPanel {
 
   List<EasyShape> shapes;
 
   public AnimationPanel(List<EasyShape> shapes) {
+    this.shapes = shapes;
+
     setSize(800, 600);
     setVisible(true);
   }
@@ -32,9 +34,13 @@ class AnimationPanel extends JPanel implements ActionListener {
     }
   }
 
-  @Override
+  public void setShapes(List<EasyShape> shapes) {
+    this.shapes = shapes;
+  }
+
+  /*@Override
   public void actionPerformed(ActionEvent e) {
     this.revalidate();
     this.repaint();
-  }
+  }*/
 }

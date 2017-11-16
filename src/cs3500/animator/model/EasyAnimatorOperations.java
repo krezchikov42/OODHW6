@@ -17,7 +17,7 @@ public interface EasyAnimatorOperations {
    * respective shapes - "current" here meaning that the current time of the animation is after or
    * exactly equal to the startTime of the action and below the endTime of the action
    */
-  public EasyAnimatorOperations updateAnimation(int time);
+  public void updateAnimation(int time);
 
   /**
    * Determines whether this animation is complete or not.

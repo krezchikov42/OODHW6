@@ -19,16 +19,17 @@ import cs3500.animator.model.EasyAnimatorOperations;
 public class VisualView extends AView {
 
 
-  boolean window;
+  private boolean window = false;
+  private AnimationPanel animator = null;
 
   @Override
   public void run(List<EasyShape> shapes) {
     int time = 0;
-    JPanel animator = null;
+
     //makes sure the constructor only happens once
-    if(!window) {
+    if(!this.window) {
       JFrame frame = new JFrame();
-       animator = new AnimationPanel(shapes);
+      animator = new AnimationPanel(shapes);
 
       frame.setSize(1500, 1000);
       frame.setMinimumSize(new Dimension(1500, 1000));
@@ -39,8 +40,10 @@ public class VisualView extends AView {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       window = true;
     }
-      animator.validate();
-      animator.repaint();
+
+    animator.setShapes(shapes);
+    animator.revalidate();
+    animator.repaint();
   }
 }
 

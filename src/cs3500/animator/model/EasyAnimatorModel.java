@@ -41,14 +41,18 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
   }
 
   @Override
-  public EasyAnimatorModel updateAnimation(int time) {
+  public void updateAnimation(int time) {
+
     ArrayList<EasyShape> newShapes = new ArrayList<>();
+
+
     for (Action a : this.actions) {
       if (a.isCurrent(time)) {
-        newShapes.add(a.applyToShape(time));
+        a.applyToShape(time);
+        //newShapes.add(a.applyToShape(time));
       }
     }
-    return new EasyAnimatorModel(actions,newShapes);
+    //return new EasyAnimatorModel(actions,newShapes);
   }
 
   @Override
