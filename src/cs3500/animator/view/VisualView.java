@@ -15,9 +15,12 @@ import cs3500.animator.Action;
 import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorOperations;
 
+/**
+ * Represents a view that gives a visual representation of shapes and actions.
+ */
 public class VisualView extends AView {
 
-
+  //ensure that the window only pops up once
   boolean window;
 
   @Override

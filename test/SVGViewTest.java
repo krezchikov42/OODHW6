@@ -26,7 +26,7 @@ public class SVGViewTest {
             "R", 0, 100, new Color(1.0f, 0.0f, 0.0f));
     m.addShape(r);
 
-    SVGView v = new SVGView(m, 1.0f);
+    SVGView v = new SVGView();
 
 
     String correct = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
@@ -38,7 +38,7 @@ public class SVGViewTest {
             + "</rect>\n"
             + "</svg>";
 
-    assertEquals(correct, v.getText());
+    assertEquals(correct, v.getText(m.getShapes(),m.getActions(),1.0f));
   }
 
   //test svg for rectangle moving right

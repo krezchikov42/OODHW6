@@ -57,8 +57,7 @@ public class EasyAnimatorModelTest {
             0, 2);
     m.addAction(a);
 
-    m.updateAnimation();
-    m.updateAnimation();
+    m.updateAnimation(2);
 
     assertEquals(rect.getPostition().getX(), 2);
   }

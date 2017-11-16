@@ -27,7 +27,11 @@ public class ViewFactory{
     } else if (s.equals("visual")) {
       //not done
       return new VisualView();
-    } else {
+    }
+    else if (s.equals("interaction")){
+      return null;//new HybridView();
+    }
+    else {
       throw new IllegalArgumentException("Not Valid View for Factory");
     }
 
