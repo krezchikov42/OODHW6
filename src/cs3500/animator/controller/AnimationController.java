@@ -35,6 +35,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
   private View view;
   private Timer timer;
   private List<String> shapeNames;
+  private boolean loop;
 
   private int currentTime;
   private float rate;
@@ -69,9 +70,16 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
       public void actionPerformed(ActionEvent e) {
         if (running) {
           model.updateAnimation(currentTime);
-          view.run(model.getShapes());
 
-          currentTime++;
+          view.run(makeInvisble(model.getShapes()));
+
+          //makes the time loop or not
+          if(loop && currentTime==model.getEndTime()){
+            currentTime = 0;
+          }
+          else {
+            currentTime++;
+          }
         }
       }
     });
@@ -118,8 +126,9 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
   }
 
+  //makes animation loop
   private void loop() {
-
+    loop = true;
   }
 
   @Override
@@ -168,6 +177,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     return ret;
   }
 
+  //makes all the shapes in the animation visible
   private void makeVisible(){
     shapeNames = new ArrayList<>();
   }
