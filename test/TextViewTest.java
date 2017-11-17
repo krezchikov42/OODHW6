@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  * Tests the text view.
  */
 public class TextViewTest {
-/**
+
   //tests the text with multiple shapes and actions
   @Test
   public void testText() {
@@ -37,7 +37,7 @@ public class TextViewTest {
     model.addAction(new ColorAction(rect, new Color(20, 30, 50),
             new Color(100, 100, 100), 15, 20));
     model.addAction(new ScaleAction(rect, 30, 40, 60, 80, 17, 25));
-    View view = new TextView(model, 1);
+    View view = new TextView();
     assertEquals("Name: Oval\n" +
             "Type: rectangle\n" +
             "top: (200.0,200.0), X radius: 10.000000, Y radius: 10.000000," +
@@ -51,7 +51,7 @@ public class TextViewTest {
             " Oval moves from (1.00,1.00) to (10.00,10.00) from t=5.00 to t=8.00\n" +
             " Rect changes color from 0.16,0.16,0.16 to 0.39,0.39,0.39 from t=15.00 to t=20.00\n" +
             " Rect scales from Width 30.00, Height 40.00 to Width 60.00, Height 80.00 from t=17.00 "
-            + "to t=25.00\n", view.getText());
+            + "to t=25.00\n", view.getText(model.getShapes(),model.getActions(),1.0f));
   }
 
   //test svg for rectangle moving right
@@ -65,7 +65,7 @@ public class TextViewTest {
     MoveAction a = new MoveAction(r, new Point(20, 20), new Point(400, 20), 5, 20);
     m.addAction(a);
 
-    View v = new ViewFactory(m, 1f).create("text");
+    View v = new ViewFactory().create("text");
 
     Assert.assertEquals("Name: R\n" +
             "Type: rectangle\n" +
@@ -73,7 +73,7 @@ public class TextViewTest {
             "Height: 50.000000, Color: 1.00,0.00,0.00\n" +
             "Appears at t=0.00\n" +
             "Disappears at t=100.00\n" +
-            "R moves from (20.00,20.00) to (400.00,20.00) from t=5.00 to t=20.00\n", v.getText());
+            "R moves from (20.00,20.00) to (400.00,20.00) from t=5.00 to t=20.00\n", v.getText(m.getShapes(),m.getActions(),1.0f));
 
   }
 
@@ -92,7 +92,7 @@ public class TextViewTest {
             5, 20);
     m.addAction(a2);
 
-    View v = new TextView(m, 1.0f);
+    View v = new TextView();
 
     Assert.assertEquals("Name: R\n" +
             "Type: rectangle\n" +
@@ -102,7 +102,7 @@ public class TextViewTest {
             "Disappears at t=100.00\n" +
             "R moves from (20.00,20.00) to (400.00,20.00) from t=5.00 to t=20.00\n" +
             "R changes color from 1.00,0.00,0.00 to 0.00,1.00,0.00 from t=5.00 to t=20.00\n",
-            v.getText());
+            v.getText(m.getShapes(),m.getActions(),1.0f));
   }
 
   //tests the svg with a rectangle and a scale
@@ -118,7 +118,7 @@ public class TextViewTest {
             200, 1, 8);
     m.addAction(a);
 
-    View v = new TextView(m, 1.0f);
+    View v = new TextView();
 
     Assert.assertEquals("Name: R\n" +
             "Type: rectangle\n" +
@@ -127,6 +127,6 @@ public class TextViewTest {
             "Appears at t=0.00\n" +
             "Disappears at t=100.00\n" +
             "R scales from Width 50, Height 50 to Width 200, Height 200 from t=1.00 to t=8.00\n",
-            v.getText());
-  }*/
+            v.getText(m.getShapes(),m.getActions(),1.0f));
+  }
 }

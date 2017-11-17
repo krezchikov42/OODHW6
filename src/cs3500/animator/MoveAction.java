@@ -46,7 +46,7 @@ public class MoveAction extends Action {
   }
 
   public Point getStartPos() {
-    return startPos;
+    return startPos.clone();
   }
 
   /**
@@ -56,13 +56,12 @@ public class MoveAction extends Action {
    */
   @Override
   public void applyToShape(int currentTime) {
-    EasyShape clone = shape.clone();
-    double timeElapsed = currentTime - startTime;
-    double moveDX = timeElapsed * dx;
-    double moveDY = timeElapsed * dy;
-    clone.setPosition(shape.getPostition().add(moveDX, moveDY));
-    shape.setPosition(getStartPos().add(moveDX, moveDY));
-    System.out.print(String.format("ClonePos:%s\n", clone.getPostition().toString()));
+    //EasyShape clone = shape.clone();
+    double moveDX = currentTime * dx;
+    double moveDY = currentTime * dy;
+    //clone.setPosition(shape.getPostition().add(moveDX, moveDY));
+    shape.setPosition(startPos.add(moveDX, moveDY));
+    //System.out.print(String.format("ClonePos:%s\n", clone.getPostition().toString()));
     //return clone;
   }
 

@@ -1,6 +1,8 @@
 package cs3500.animator.controller;
 
+import com.sun.xml.internal.ws.addressing.model.ActionNotSupportedException;
 import cs3500.animator.EasyAnimator;
+import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorModel;
 import cs3500.animator.model.EasyAnimatorOperations;
 import cs3500.animator.util.AnimationFileReader;
@@ -12,27 +14,48 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimerTask;
-import java.util.Timer;
 import javax.swing.JOptionPane;
+import javax.swing.JSlider;
+import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class AnimationController implements Controller {
+/**
+ * Represents a Controller that puts together a model and a view.
+ */
+public class AnimationController implements Controller, ActionListener, ChangeListener {
 
   private EasyAnimatorOperations model;
+  private List<EasyShape> initialModelShapes;
   private View view;
+  private Timer timer;
+  private List<String> shapeNames;
 
   private int currentTime;
   private float rate;
   private boolean running;
+  private boolean loop;
 
+  /**
+   * Creates an Animation Controller.
+   * @param model the model the controller uses.
+   * @param view the view the controller uses.
+   * @param rate the rate of the animation.
+   */
   public AnimationController(EasyAnimatorOperations model, View view, float rate) {
     this.model = model;
+    shapeNames = new ArrayList<>();
+    this.initialModelShapes = model.getShapesCopy();
     this.view = view;
 
     this.currentTime = 0;
     this.rate = rate;
-    this.running = running;
+    this.running = false;
+    loop = false;
   }
 
   public String getTextFromTextualView() {
@@ -41,23 +64,26 @@ public class AnimationController implements Controller {
   }
 
   public void runViewWithVisualComponent() {
-
     this.running = true;
 
-    new javax.swing.Timer((int) (1000.0f / this.rate), new ActionListener() {
+    timer = new javax.swing.Timer((int) (1000.0f / this.rate), new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-
         if (running) {
           model.updateAnimation(currentTime);
-          //System.out.print(String.format("no. actions: %d\n",model.getActions().size()));
-          view.run(model.getShapes());
-          //System.out.print(model.getShapes().get(0).getPostition().getY());
-          //System.out.print("\ncurrent time:");System.out.print(currentTime);
-          //System.out.println();
-          currentTime++;
+          view.run(makeInvisble(model.getShapes()));
+          if(loop && currentTime == model.getEndTime()){
+            currentTime = 0;
+          }
+          else {
+            currentTime++;
+          }
         }
       }
-    }).start();
+    });
+    timer.start();
+    while(true){
+      //lets see if this works
+    }
   }
 
   private void pause() {
@@ -68,15 +94,63 @@ public class AnimationController implements Controller {
     this.running = true;
   }
 
+  private void loop(){this.loop = true;}
+
   private void rewindToStart() {
     this.pause();
     this.currentTime = 0;
+    model.updateAnimation(0);
+    view.run(model.getShapes());
+    //view.run(initialModelShapes);
+    //this.model.setShapes(initialModelShapes);
   }
 
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    String command = e.getActionCommand();
+    switch (command) {
+      case "Play/Resume": resume(); break;
+      case "Pause": pause(); break;
+      case "Restart": rewindToStart(); break;
+      case "Looping": loop(); break;
+      default: return;
+    }
+  }
 
   // pops up a Jpanel and ends the propgram.
   private static void endGame() {
     JOptionPane.showMessageDialog(null, "Incorrect command");
     System.exit(0);
+  }
+
+  @Override
+  public void stateChanged(ChangeEvent e) {
+    JSlider source = (JSlider)e.getSource();
+    int ticksPerSecond = (int)source.getValue();
+    this.rate = (float) ticksPerSecond;
+    timer.setDelay((int) (1000.0f / rate));
+  }
+
+  //makes shapes invisible that the user has selected by removing them from the list
+  private List<EasyShape> makeInvisble(List<EasyShape> shapes){
+    List<EasyShape> ret = new ArrayList<>();
+    for(EasyShape shape: shapes){
+      ret.add(shape.clone());
+    }
+
+    ret.removeIf(easyShape ->
+    {
+      boolean match = false;
+      for(String s: shapeNames){
+      match |= easyShape.getName().equals(s);
+    }
+    return match;
+    });
+
+      return ret;
+  }
+
+  private void makeVisible(){
+    shapeNames = new ArrayList<>();
   }
 }

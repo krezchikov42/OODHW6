@@ -21,7 +21,7 @@ public abstract class Action implements Textable, CanBeCloned<Action> {
    * @param endTime   the end time of the shape.
    */
   protected Action(EasyShape shape, int startTime, int endTime) {
-    Usefull.throwkNull(shape, "Shape in Action");
+    Usefull.throwNull(shape, "Shape in Action");
     this.shape = shape;
     this.startTime = startTime;
     this.endTime = endTime;

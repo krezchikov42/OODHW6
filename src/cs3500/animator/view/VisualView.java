@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -15,15 +16,17 @@ import cs3500.animator.Action;
 import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorOperations;
 
+/**
+ * Represents a visual view of some shapes.
+ */
 public class VisualView extends AView {
 
 
-  boolean window;
-
+  private boolean window;
+  private JPanel animator;
   @Override
-  public void run(ArrayList<EasyShape> shapes) {
+  public void run(List<EasyShape> shapes) {
     int time = 0;
-    JPanel animator = null;
     //makes sure the constructor only happens once
     if(!window) {
       JFrame frame = new JFrame();
@@ -38,7 +41,7 @@ public class VisualView extends AView {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       window = true;
     }
-      animator.validate();
+      animator.revalidate();
       animator.repaint();
   }
 }

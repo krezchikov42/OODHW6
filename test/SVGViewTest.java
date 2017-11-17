@@ -54,18 +54,18 @@ public class SVGViewTest {
 
     SVGView v = new SVGView();
 
-    String correct = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
-            + "     xmlns=\"http://www.w3.org/2000/svg\">\n"
-            + "<rect id=\"R\" x=\"20\" y=\"20\" width=\"50\" height=\"50\" fill=\"rgb(255,0,0)\"" +
-            " visibility=\"hidden\" >\n"
-            + "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\"" +
-            " begin=\"0.00s\" dur=\"100.00s\" fill=\"remove\" />\n"
-            + "<animate attributeType=\"xml\" begin=\"5.00s\" dur=\"15.00s\" attributeName=\"x\" " +
-            "from=\"20\" to=\"400\" fill=\"freeze\" />\n"
-            + "<animate attributeType=\"xml\" begin=\"5.00s\" dur=\"15.00s\" attributeName=\"y\" " +
-            "from=\"20\" to=\"20\" fill=\"freeze\" />\n"
-            + "</rect>\n"
-            + "</svg>";
+    String correct = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n" +
+            "     xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "<rect id=\"R\" x=\"20.00\" y=\"20.00\" width=\"50.00\" height=\"50.00\"" +
+            " fill=\"rgb(255,0,0)\" visibility=\"hidden\" >\n" +
+            "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\"" +
+            " begin=\"0.00s\" dur=\"100.00s\" fill=\"remove\" />\n" +
+            "<animate attributeType=\"xml\" begin=\"5.00s\" dur=\"15.00s\" attributeName=\"x\"" +
+            " from=\"20.00\" to=\"400.00\" fill=\"freeze\" />\n" +
+            "<animate attributeType=\"xml\" begin=\"5.00s\" dur=\"15.00s\" attributeName=\"y\"" +
+            " from=\"20.00\" to=\"20.00\" fill=\"freeze\" />\n" +
+            "</rect>\n" +
+            "</svg>";
     assertEquals(correct, v.getText(m.getShapes(),m.getActions(),1.0f));
   }
 
@@ -93,7 +93,7 @@ public class SVGViewTest {
             + "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\"" +
             " begin=\"0.00s\" dur=\"100.00s\" fill=\"remove\" />\n"
             + "<animate attributeType=\"xml\" begin=\"5.00s\" dur=\"15.00s\" attributeName=\"x\"" +
-            "from=\"20.00\" to=\"400.00\" fill=\"freeze\" />\n"
+            " from=\"20.00\" to=\"400.00\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"5.00s\" dur=\"15.00s\" attributeName=\"y\" " +
             "from=\"20.00\" to=\"20.00\" fill=\"freeze\" />\n"
             + "<animate attributeName=\"fill\" attributeType=\"CSS\"\n"
@@ -130,7 +130,7 @@ public class SVGViewTest {
             + "           begin=\"1.00s\" dur=\"8.00s\" fill=\"freeze\" />\n"
             + "</rect>\n"
             + "</svg>";
-    assertEquals(correct, v.getText());
+    assertEquals(correct, v.getText(m.getShapes(),m.getActions(),1.0f));
   }
 
 }

@@ -22,14 +22,12 @@ public class ViewFactory{
     if (s.equals("text")) {
       return new TextView();
     } else if (s.equals("svg")) {
-      //not done
       return new SVGView();
     } else if (s.equals("visual")) {
-      //not done
       return new VisualView();
     }
-    else if (s.equals("interaction")){
-      return null;//new HybridView();
+    else if (s.equals("interactive")){
+      return new HybridView();
     }
     else {
       throw new IllegalArgumentException("Not Valid View for Factory");

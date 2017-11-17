@@ -1,6 +1,7 @@
 package cs3500.animator;
 
 import cs3500.animator.controller.AnimationController;
+import cs3500.animator.view.HybridView;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -64,7 +65,12 @@ public final class EasyAnimator {
       AnimationController control = new AnimationController(model, view1, rate);
       if (view.equals("visual")) {
         control.runViewWithVisualComponent();
-      } else {
+      }
+      else if (view.equals("interactive")) {
+        ((HybridView) view1).setListener(control);
+        control.runViewWithVisualComponent();
+      }
+      else {
 
         if (output.equals("out")) {
           System.out.print(control.getTextFromTextualView());
