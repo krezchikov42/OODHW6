@@ -62,11 +62,11 @@ public class ScaleAction extends Action {
   }
 
   @Override
-  public EasyShape applyToShape(int currentTime) {
+  public void applyToShape(int currentTime) {
     EasyShape clone = shape.clone();
     clone.setHeight(shape.getHeight()+yincr*currentTime);
     clone.setWidth(shape.getWidth()+xincr*currentTime);
-    return clone;
+    //return clone;
   }
 
   @Override

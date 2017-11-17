@@ -57,7 +57,7 @@ public class ColorAction extends Action {
    * @param currentTime The current time in the animation model using this action
    */
   @Override
-  public EasyShape applyToShape(int currentTime) {
+  public void applyToShape(int currentTime) {
     EasyShape clone = shape.clone();
     int duration = this.endTime - this.startTime;
     double newRed = Math.min(1, (this.shape.getColor().getRed()) + this.redIncrement*currentTime);
@@ -67,7 +67,7 @@ public class ColorAction extends Action {
     Color newColor = new Color(newRed, newGreen, newBlue);
 
     clone.setColor(newColor);
-    return clone;
+    //return clone;
   }
 
   @Override

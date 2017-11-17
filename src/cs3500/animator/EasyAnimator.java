@@ -1,5 +1,6 @@
 package cs3500.animator;
 
+import cs3500.animator.controller.AnimationController;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -59,18 +60,19 @@ public final class EasyAnimator {
     }
     if (ifhap && ivhap) {
 
-      View view1 = (new ViewFactory(model, rate)).create(view);
+      View view1 = (new ViewFactory()).create(view);
+      AnimationController control = new AnimationController(model, view1, rate);
       if (view.equals("visual")) {
-        view1.run();
+        control.runViewWithVisualComponent();
       } else {
 
         if (output.equals("out")) {
-          System.out.print(view1.getText());
+          System.out.print(control.getTextFromTextualView());
         } else {
           try {
             FileWriter write = new FileWriter(output, true);
             PrintWriter print = new PrintWriter(write);
-            print.print(view1.getText());
+            print.print(control.getTextFromTextualView());
             print.close();
           } catch (IOException e) {
             throw new IllegalArgumentException("Can't write to file");
