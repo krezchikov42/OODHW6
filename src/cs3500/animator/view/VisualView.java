@@ -21,7 +21,7 @@ public class VisualView extends AView {
   boolean window;
 
   @Override
-  public void run(ArrayList<EasyShape> shapes, ArrayList<Action> actions) {
+  public void run(ArrayList<EasyShape> shapes) {
     int time = 0;
     JPanel animator = null;
     //makes sure the constructor only happens once

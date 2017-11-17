@@ -52,7 +52,7 @@ public class SVGViewTest {
     MoveAction a = new MoveAction(r, new Point(20, 20), new Point(400, 20), 5, 20);
     m.addAction(a);
 
-    SVGView v = new SVGView(m, 1.0f);
+    SVGView v = new SVGView();
 
     String correct = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
             + "     xmlns=\"http://www.w3.org/2000/svg\">\n"
@@ -66,7 +66,7 @@ public class SVGViewTest {
             "from=\"20\" to=\"20\" fill=\"freeze\" />\n"
             + "</rect>\n"
             + "</svg>";
-    assertEquals(correct, v.getText());
+    assertEquals(correct, v.getText(m.getShapes(),m.getActions(),1.0f));
   }
 
   //test svg view with rectangle with moves and color
@@ -84,7 +84,7 @@ public class SVGViewTest {
             5, 20);
     m.addAction(a2);
 
-    SVGView v = new SVGView(m, 1.0f);
+    SVGView v = new SVGView();
 
     String correct = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
             + "     xmlns=\"http://www.w3.org/2000/svg\">\n"
@@ -102,7 +102,7 @@ public class SVGViewTest {
             + "</rect>\n"
             + "</svg>";
 
-    assertEquals(correct, v.getText());
+    assertEquals(correct, v.getText(m.getShapes(),m.getActions(),1.0f));
   }
 
   //tests the svg with a rectangle and a scale
@@ -116,7 +116,7 @@ public class SVGViewTest {
     ScaleAction a = new ScaleAction(r, 50, 50, 200, 200, 1, 8);
     m.addAction(a);
 
-    SVGView v = new SVGView(m, 1.0f);
+    SVGView v = new SVGView();
 
     String correct = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
             + "     xmlns=\"http://www.w3.org/2000/svg\">\n"
