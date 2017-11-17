@@ -103,6 +103,10 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     }
   }
 
+  private void addToHiddenList() {
+
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     String command = e.getActionCommand();
@@ -110,6 +114,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
       case "Play/Resume": resume(); break;
       case "Pause": pause(); break;
       case "Restart": rewindToStart(); break;
+      case "add shape": addToHiddenList(); break;
       default: return;
     }
   }

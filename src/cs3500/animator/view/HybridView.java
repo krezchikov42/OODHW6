@@ -6,6 +6,8 @@ import cs3500.animator.Action;
 import cs3500.animator.EasyShape;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.TextField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +16,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.event.ChangeListener;
 
 public class HybridView extends AView {
 
-  boolean window;
-  AnimationPanel animator = null;
+  private boolean window;
+  private AnimationPanel animator = null;
   ActionListener listener = null;
+
+  JTextField textField = null;
+
+  //return [shape.clone() for shape in shapes if shape not in shapeNames]
 
   /**
    * Returns a String containing an SVG representation of the animation.
@@ -56,9 +63,9 @@ public class HybridView extends AView {
       // add other buttons and functionalities
       this.addButtons(frame);
       this.addSlider(frame);
+      this.addShapeSelectionPanel(frame);
 
       frame.setVisible(true);
-      //frame.setLayout(new BorderLayout());
       frame.pack();
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       window = true;
@@ -72,7 +79,6 @@ public class HybridView extends AView {
 
     JPanel buttonsPanels = new JPanel();
     buttonsPanels.setBackground(Color.lightGray);
-    //buttonsPanels.setLayout(new BorderLayout());
 
     JButton playButton = new JButton("Play/Resume");
     playButton.addActionListener(this.listener);
@@ -100,5 +106,26 @@ public class HybridView extends AView {
     ticksPerSecond.setPaintLabels(true);
 
     frame.add(ticksPerSecond, BorderLayout.PAGE_START);
+  }
+
+  private void addShapeSelectionPanel(JFrame frame) {
+
+    JPanel selectionPanel = new JPanel();
+    selectionPanel.setBackground(Color.lightGray);
+
+    textField = new JTextField(20);
+    //textField.setPreferredSize(new Dimension(200, 100));
+    JButton goButton = new JButton("add shape");
+
+    JPanel selectedShapesPanel = new JPanel();
+    //selectedShapesPanel.setPreferredSize(new Dimension(200, 800));
+
+    selectionPanel.setLayout(new GridLayout(3, 1));
+
+    selectionPanel.add(textField);
+    selectionPanel.add(goButton);
+
+    frame.add(selectionPanel, BorderLayout.LINE_END);
+
   }
 }
