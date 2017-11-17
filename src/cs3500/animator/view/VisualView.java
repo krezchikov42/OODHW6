@@ -16,16 +16,17 @@ import cs3500.animator.Action;
 import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorOperations;
 
+/**
+ * Represents a visual view of some shapes.
+ */
 public class VisualView extends AView {
 
 
-  boolean window;
-  JPanel animator = null;
-
+  private boolean window;
+  private JPanel animator;
   @Override
   public void run(List<EasyShape> shapes) {
     int time = 0;
-
     //makes sure the constructor only happens once
     if(!window) {
       JFrame frame = new JFrame();

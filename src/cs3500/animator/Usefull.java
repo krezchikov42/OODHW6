@@ -10,7 +10,7 @@ public class Usefull {
    * @param o       that will be checked if null.
    * @param message that will be in exception.
    */
-  public static void throwkNull(Object o, String message) {
+  public static void throwNull(Object o, String message) {
     if (o == null) {
       throw new IllegalArgumentException(message + " is null");
     }

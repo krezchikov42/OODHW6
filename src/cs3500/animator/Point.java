@@ -47,7 +47,7 @@ public class Point implements CanBeCloned<Point> {
    * @param y is how much it changes in the y direction.
    */
   public Point add(double x, double y) {
-    return new Point(this.x + x, this.y + y);
+    return new Point(this.x +  x, this.y + y);
   }
 
   @Override

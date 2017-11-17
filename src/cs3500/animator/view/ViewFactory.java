@@ -22,10 +22,8 @@ public class ViewFactory{
     if (s.equals("text")) {
       return new TextView();
     } else if (s.equals("svg")) {
-      //not done
       return new SVGView();
     } else if (s.equals("visual")) {
-      //not done
       return new VisualView();
     }
     else if (s.equals("interactive")){

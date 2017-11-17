@@ -107,6 +107,10 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
   }
 
+  private void loop() {
+
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     String command = e.getActionCommand();
@@ -115,6 +119,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
       case "Pause": pause(); break;
       case "Restart": rewindToStart(); break;
       case "add shape": addToHiddenList(); break;
+      case "Looping": loop(); break;
       default: return;
     }
   }
