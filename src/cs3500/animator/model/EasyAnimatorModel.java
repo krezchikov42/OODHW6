@@ -19,7 +19,7 @@ import cs3500.animator.util.TweenModelBuilder;
  * over a specified time.
  */
 public class EasyAnimatorModel implements EasyAnimatorOperations {
-
+  int mtime;
   private ArrayList<Action> actions;
   private ArrayList<EasyShape> shapes;
 
@@ -29,7 +29,7 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
    * shapes.
    */
   public EasyAnimatorModel() {
-
+    mtime = 0;
     this.actions = new ArrayList<>();
     this.shapes = new ArrayList<>();
 
@@ -42,13 +42,14 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
 
   @Override
   public void updateAnimation(int time) {
-
+    int update = time - mtime;
+    mtime = time;
     ArrayList<EasyShape> newShapes = new ArrayList<>();
 
 
     for (Action a : this.actions) {
-      if (a.isCurrent(time)) {
-        a.applyToShape(time);
+      if (a.isCurrent(mtime)) {
+        a.applyToShape(update);
         //newShapes.add(a.applyToShape(time));
       }
     }
