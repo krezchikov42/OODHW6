@@ -25,21 +25,32 @@ import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * This is the controller that puts together a model and a view.
+ */
 public class AnimationController implements Controller, ActionListener, ChangeListener {
 
   private EasyAnimatorOperations model;
   private List<EasyShape> initialModelShapes;
   private View view;
   private Timer timer;
+  private List<String> shapeNames;
 
   private int currentTime;
   private float rate;
   private boolean running;
 
+  /**
+   * Makes an Animation Controller.
+   * @param model the model for the controller.
+   * @param view the view for the controller.
+   * @param rate the rate of the animation.
+   */
   public AnimationController(EasyAnimatorOperations model, View view, float rate) {
     this.model = model;
     this.initialModelShapes = model.getShapesCopy();
     this.view = view;
+    shapeNames = new ArrayList<>();
 
     this.currentTime = 0;
     this.rate = rate;
@@ -136,5 +147,28 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     int ticksPerSecond = (int)source.getValue();
     this.rate = (float) ticksPerSecond;
     timer.setDelay((int) (1000.0f / rate));
+  }
+
+  //makes shapes invisible that the user has selected by removing them from the list
+  private List<EasyShape> makeInvisble(List<EasyShape> shapes){
+    List<EasyShape> ret = new ArrayList<>();
+    for(EasyShape shape: shapes){
+      ret.add(shape.clone());
+    }
+
+    ret.removeIf(easyShape ->
+    {
+      boolean match = false;
+      for(String s: shapeNames){
+        match |= easyShape.getName().equals(s);
+      }
+      return match;
+    });
+
+    return ret;
+  }
+
+  private void makeVisible(){
+    shapeNames = new ArrayList<>();
   }
 }
