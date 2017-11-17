@@ -1,6 +1,7 @@
 package cs3500.animator.controller;
 
 import com.sun.xml.internal.ws.addressing.model.ActionNotSupportedException;
+import cs3500.animator.Action;
 import cs3500.animator.EasyAnimator;
 import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorModel;
@@ -14,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
@@ -76,8 +78,29 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
   private void rewindToStart() {
     this.pause();
     this.currentTime = 0;
+    // Make new clone
+
+
+    setActionShapeLinks(initialModelShapes);
     view.run(initialModelShapes);
     this.model.setShapes(initialModelShapes);
+
+    List<EasyShape> copy = new ArrayList<EasyShape>(); // = new ArrayList<>(initialModelShapes);
+    for (EasyShape s: initialModelShapes) {
+      copy.add(s.clone());
+    }
+    //copy.forEach(EasyShape::clone);
+    System.out.println(String.format("ShapePos: %s\n", copy.get(0).getPostition()));
+
+    this.initialModelShapes = copy;
+  }
+
+  private void setActionShapeLinks(List<EasyShape> shapes) {
+    for (EasyShape s: shapes) {
+      for (Action a: s.getActions()) {
+        a.setShape(s);
+      }
+    }
   }
 
   @Override
