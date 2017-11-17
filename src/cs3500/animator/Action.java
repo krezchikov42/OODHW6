@@ -28,6 +28,10 @@ public abstract class Action implements Textable, CanBeCloned<Action> {
     shape.addAction(this);
   }
 
+  public void setShape(EasyShape shape) {
+    this.shape = shape;
+  }
+
   /**
    * Return the start time of the Action.
    *

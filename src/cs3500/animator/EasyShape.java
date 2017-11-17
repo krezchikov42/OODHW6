@@ -162,6 +162,9 @@ public abstract class EasyShape implements Textable, CanBeCloned<EasyShape> {
     return height;
   }
 
+  public List<Action> getActions() {
+    return actions;
+  }
 
   /**
    * Creates a readable english representation of this shape.
