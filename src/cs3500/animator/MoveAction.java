@@ -62,7 +62,7 @@ public class MoveAction extends Action {
     double moveDY = timeElapsed * dy;
     clone.setPosition(shape.getPostition().add(moveDX, moveDY));
     shape.setPosition(getStartPos().add(moveDX, moveDY));
-    System.out.print(String.format("ClonePos:%s\n", clone.getPostition().toString()));
+    //System.out.print(String.format("ClonePos:%s\n", clone.getPostition().toString()));
     //return clone;
   }
 

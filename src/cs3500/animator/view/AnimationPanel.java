@@ -1,5 +1,6 @@
 package cs3500.animator.view;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,7 @@ class AnimationPanel extends JPanel {
     this.shapes = shapes;
 
     setSize(800, 600);
+    setMinimumSize(new Dimension(800, 600));
     setVisible(true);
   }
 

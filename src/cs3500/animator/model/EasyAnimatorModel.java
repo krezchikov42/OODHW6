@@ -20,8 +20,8 @@ import cs3500.animator.util.TweenModelBuilder;
  */
 public class EasyAnimatorModel implements EasyAnimatorOperations {
   int mtime;
-  private ArrayList<Action> actions;
-  private ArrayList<EasyShape> shapes;
+  private List<Action> actions;
+  private List<EasyShape> shapes;
 
 
   /**
@@ -35,7 +35,7 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
 
   }
 
-  private EasyAnimatorModel(ArrayList<Action> actions, ArrayList<EasyShape> shapes) {
+  private EasyAnimatorModel(List<Action> actions, List<EasyShape> shapes) {
     this.actions = actions;
     this.shapes = shapes;
   }
@@ -48,8 +48,8 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
 
 
     for (Action a : this.actions) {
-      if (a.isCurrent(mtime)) {
-        a.applyToShape(update);
+      if (a.isCurrent(time)) {
+        a.applyToShape(time);
         //newShapes.add(a.applyToShape(time));
       }
     }
@@ -104,6 +104,19 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
       ret.add(s);
     }
     return ret;
+  }
+
+  public ArrayList<EasyShape> getShapesCopy() {
+    ArrayList<EasyShape> ret = new ArrayList<>();
+    for (EasyShape s : shapes) {
+      ret.add(s.clone());
+    }
+    return ret;
+  }
+
+  @Override
+  public void setShapes(List<EasyShape> shapes) {
+    this.shapes = shapes;
   }
 
   public static final class Builder implements TweenModelBuilder<EasyAnimatorOperations> {

@@ -1,6 +1,8 @@
 package cs3500.animator.controller;
 
+import com.sun.xml.internal.ws.addressing.model.ActionNotSupportedException;
 import cs3500.animator.EasyAnimator;
+import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorModel;
 import cs3500.animator.model.EasyAnimatorOperations;
 import cs3500.animator.util.AnimationFileReader;
@@ -13,14 +15,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.TimerTask;
-import java.util.Timer;
 import javax.swing.JOptionPane;
+import javax.swing.JSlider;
+import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class AnimationController implements Controller {
+public class AnimationController implements Controller, ActionListener, ChangeListener {
 
   private EasyAnimatorOperations model;
+  private List<EasyShape> initialModelShapes;
   private View view;
+  private Timer timer;
 
   private int currentTime;
   private float rate;
@@ -28,11 +36,12 @@ public class AnimationController implements Controller {
 
   public AnimationController(EasyAnimatorOperations model, View view, float rate) {
     this.model = model;
+    this.initialModelShapes = model.getShapesCopy();
     this.view = view;
 
     this.currentTime = 0;
     this.rate = rate;
-    this.running = running;
+    this.running = false;
   }
 
   public String getTextFromTextualView() {
@@ -41,23 +50,19 @@ public class AnimationController implements Controller {
   }
 
   public void runViewWithVisualComponent() {
-
     this.running = true;
 
-    new javax.swing.Timer((int) (1000.0f / this.rate), new ActionListener() {
+    timer = new javax.swing.Timer((int) (1000.0f / this.rate), new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-
         if (running) {
           model.updateAnimation(currentTime);
-          //System.out.print(String.format("no. actions: %d\n",model.getActions().size()));
           view.run(model.getShapes());
-          //System.out.print(model.getShapes().get(0).getPostition().getY());
-          //System.out.print("\ncurrent time:");System.out.print(currentTime);
-          //System.out.println();
+
           currentTime++;
         }
       }
-    }).start();
+    });
+    timer.start();
   }
 
   private void pause() {
@@ -71,12 +76,32 @@ public class AnimationController implements Controller {
   private void rewindToStart() {
     this.pause();
     this.currentTime = 0;
+    view.run(initialModelShapes);
+    this.model.setShapes(initialModelShapes);
   }
 
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    String command = e.getActionCommand();
+    switch (command) {
+      case "Play/Resume": resume(); break;
+      case "Pause": pause(); break;
+      case "Restart": rewindToStart(); break;
+      default: return;
+    }
+  }
 
   // pops up a Jpanel and ends the propgram.
   private static void endGame() {
     JOptionPane.showMessageDialog(null, "Incorrect command");
     System.exit(0);
+  }
+
+  @Override
+  public void stateChanged(ChangeEvent e) {
+    JSlider source = (JSlider)e.getSource();
+    int ticksPerSecond = (int)source.getValue();
+    this.rate = (float) ticksPerSecond;
+    timer.setDelay((int) (1000.0f / rate));
   }
 }

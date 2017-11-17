@@ -61,6 +61,8 @@ public interface EasyAnimatorOperations {
    */
   public List<EasyShape> getShapes();
 
+  public List<EasyShape> getShapesCopy();
+
   /**
    * Return a copy of Actions in the model.
    *
@@ -69,4 +71,5 @@ public interface EasyAnimatorOperations {
   public List<Action> getActions();
 
 
+  void setShapes(List<EasyShape> shapes);
 }
