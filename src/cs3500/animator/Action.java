@@ -87,6 +87,8 @@ public abstract class Action implements Textable, CanBeCloned<Action> {
             textaction, startTime / ticksOverSeconds, endTime / ticksOverSeconds);
   }
 
+  public abstract String getSVG(float ticksOverSeconds, boolean shouldLoop);
+
   @Override
   public abstract Action clone();
 

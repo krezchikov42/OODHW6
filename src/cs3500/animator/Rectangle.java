@@ -41,7 +41,7 @@ public class Rectangle extends EasyShape {
 
 
   @Override
-  public String getSVG(float ticksOverSeconds) {
+  public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
     // opening rect tag
     String svg = String.format("<rect id=\"%s\" x=\"%.2f\" y=\"%.2f\" width=\"%.2f\" " +
                     "height=\"%.2f\" fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n",
@@ -49,13 +49,14 @@ public class Rectangle extends EasyShape {
             getColor().getRed255(), getColor().getGreen255(), getColor().getBlue255());
 
     // Add visibility animation
+    String looper = (shouldLoop) ? "base.begin+":"";
     svg += String.format("<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\""
-                    + " begin=\"%.2fs\" dur=\"%.2fs\" fill=\"remove\" />\n",
+                    + " begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"remove\" />\n", looper,
             appearTime / ticksOverSeconds, (hideTime - appearTime) / ticksOverSeconds);
 
     // Add all other animations
     for (Action a : this.actions) {
-      svg += a.getSVG(ticksOverSeconds) + "\n";
+      svg += a.getSVG(ticksOverSeconds, shouldLoop) + "\n";
     }
 
     // closing rect tag

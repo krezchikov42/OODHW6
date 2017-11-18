@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.Timer;
@@ -62,7 +64,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
   public String getTextFromTextualView() {
     return this.view.getText(this.model.getShapes(),
-        this.model.getActions(), this.rate,model.getEndTime());
+        this.model.getActions(), this.rate, this.model.getEndTime());
   }
 
   public void runViewWithVisualComponent() {
