@@ -17,12 +17,12 @@ public class SVGView extends AView {
    *
    * @return an svg representation of the animation.
    */
-  public String getText(List<EasyShape> shapes, List<Action> actions, float rate) {
+  public String getText(List<EasyShape> shapes, List<Action> actions, float rate,int endTime) {
     String text = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
             + "     xmlns=\"http://www.w3.org/2000/svg\">\n";
 
     for (EasyShape s : shapes) {
-      text += s.getSVG(rate);
+      text += s.getSVG(rate,false);
     }
     text += "\n</svg>";
 

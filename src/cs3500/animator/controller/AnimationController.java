@@ -86,6 +86,10 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
       }
     });
     timer.start();
+
+    while(true){
+
+    }
   }
 
   private void pause() {
