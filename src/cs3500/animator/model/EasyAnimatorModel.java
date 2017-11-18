@@ -158,8 +158,8 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
                                                              float red, float green, float blue,
                                                              int startOfLife,
                                                              int endOfLife) {
-      Oval o = new Oval(yRadius, xRadius, new Point((int) cx, (int) cy), EasyShape.PinHole.Top,
-              name, startOfLife, endOfLife, new Color(red, green, blue));
+      Oval o = new Oval(yRadius, xRadius, new Point( cx,  cy), EasyShape.PinHole.Top,
+              name, startOfLife, endOfLife, new Color((double) red, (double) green, (double) blue));
       this.model.addShape(o);
       return this;
     }
@@ -170,9 +170,9 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
                                                                   float red, float green,
                                                                   float blue, int startOfLife,
                                                                   int endOfLife) {
-      Rectangle r = new Rectangle(width, height, new Point((int) lx, (int) ly),
+      Rectangle r = new Rectangle(width, height, new Point(lx,  ly),
               EasyShape.PinHole.BottomLeft,
-              name, startOfLife, endOfLife, new Color(red, green, blue));
+              name, startOfLife, endOfLife, new Color((double) red, (double) green, (double) blue));
       this.model.addShape(r);
       return this;
     }

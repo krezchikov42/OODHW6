@@ -1,0 +1,63 @@
+<svg width="700" height="500" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+<rect>
+   <animate id="base" begin="0;base.end" dur="3020.0ms" attributeName="visibility" from="hide" to="hide"/>
+</rect><rect id="disk1" x="385.00" y="50.00" width="20.00" height="30.00" fill="rgb(0,0,0)" visibility="hidden" >
+<set attributeName="visibility" attributeType="CSS" to="visible" begin="base.begin+0.10s" dur="30.10s" fill="remove" />
+<animate attributeType="xml" begin="base.begin+2.50s" dur="1.00s" attributeName="x" from="190.00" to="190.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+2.50s" dur="1.00s" attributeName="y" from="180.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+3.60s" dur="1.00s" attributeName="x" from="190.00" to="490.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+3.60s" dur="1.00s" attributeName="y" from="50.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+4.70s" dur="1.00s" attributeName="x" from="490.00" to="490.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+4.70s" dur="1.00s" attributeName="y" from="50.00" to="240.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+8.90s" dur="1.00s" attributeName="x" from="490.00" to="490.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+8.90s" dur="1.00s" attributeName="y" from="240.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+10.00s" dur="1.00s" attributeName="x" from="490.00" to="340.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+10.00s" dur="1.00s" attributeName="y" from="50.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+11.10s" dur="1.00s" attributeName="x" from="340.00" to="340.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+11.10s" dur="1.00s" attributeName="y" from="50.00" to="210.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+15.30s" dur="1.00s" attributeName="x" from="340.00" to="340.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+15.30s" dur="1.00s" attributeName="y" from="210.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+16.40s" dur="1.00s" attributeName="x" from="340.00" to="190.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+16.40s" dur="1.00s" attributeName="y" from="50.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+17.50s" dur="1.00s" attributeName="x" from="190.00" to="190.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+17.50s" dur="1.00s" attributeName="y" from="50.00" to="240.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+21.70s" dur="1.00s" attributeName="x" from="190.00" to="190.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+21.70s" dur="1.00s" attributeName="y" from="240.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+22.80s" dur="1.00s" attributeName="x" from="190.00" to="490.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+22.80s" dur="1.00s" attributeName="y" from="50.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+23.90s" dur="1.00s" attributeName="x" from="490.00" to="490.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+23.90s" dur="1.00s" attributeName="y" from="50.00" to="180.00" fill="freeze" />
+<animate attributeName="fill" attributeType="CSS"
+           from="rgb(0,0,0)" to="rgb(0,255,0)"
+           begin="base.begin+24.90s" dur="0.80s" fill="freeze" />
+</rect><rect id="disk2" x="317.50" y="221.00" width="65.00" height="30.00" fill="rgb(0,0,0)" visibility="hidden" >
+<set attributeName="visibility" attributeType="CSS" to="visible" begin="base.begin+0.10s" dur="30.10s" fill="remove" />
+<animate attributeType="xml" begin="base.begin+5.70s" dur="1.00s" attributeName="x" from="167.50" to="167.50" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+5.70s" dur="1.00s" attributeName="y" from="210.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+6.80s" dur="1.00s" attributeName="x" from="167.50" to="317.50" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+6.80s" dur="1.00s" attributeName="y" from="50.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+7.90s" dur="1.00s" attributeName="x" from="317.50" to="317.50" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+7.90s" dur="1.00s" attributeName="y" from="50.00" to="240.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+18.50s" dur="1.00s" attributeName="x" from="317.50" to="317.50" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+18.50s" dur="1.00s" attributeName="y" from="240.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+19.60s" dur="1.00s" attributeName="x" from="317.50" to="467.50" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+19.60s" dur="1.00s" attributeName="y" from="50.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+20.70s" dur="1.00s" attributeName="x" from="467.50" to="467.50" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+20.70s" dur="1.00s" attributeName="y" from="50.00" to="210.00" fill="freeze" />
+<animate attributeName="fill" attributeType="CSS"
+           from="rgb(0,0,0)" to="rgb(0,255,0)"
+           begin="base.begin+21.70s" dur="0.80s" fill="freeze" />
+</rect><rect id="disk3" x="145.00" y="240.00" width="110.00" height="30.00" fill="rgb(0,0,0)" visibility="hidden" >
+<set attributeName="visibility" attributeType="CSS" to="visible" begin="base.begin+0.10s" dur="30.10s" fill="remove" />
+<animate attributeType="xml" begin="base.begin+12.10s" dur="1.00s" attributeName="x" from="145.00" to="145.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+12.10s" dur="1.00s" attributeName="y" from="240.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+13.20s" dur="1.00s" attributeName="x" from="145.00" to="445.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+13.20s" dur="1.00s" attributeName="y" from="50.00" to="50.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+14.30s" dur="1.00s" attributeName="x" from="445.00" to="445.00" fill="freeze" />
+<animate attributeType="xml" begin="base.begin+14.30s" dur="1.00s" attributeName="y" from="50.00" to="240.00" fill="freeze" />
+<animate attributeName="fill" attributeType="CSS"
+           from="rgb(0,0,0)" to="rgb(0,255,0)"
+           begin="base.begin+15.30s" dur="0.80s" fill="freeze" />
+</rect>
+</svg>
