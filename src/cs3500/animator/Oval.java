@@ -42,10 +42,10 @@ public class Oval extends EasyShape {
   @Override
   public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
     // opening ellipse tag
-    String svg = String.format("<ellipse id=\"%s\" cx=\"%d\" cy=\"%d\" rx=\"%.0f\" "
-                    + "ry=\"%.0f\" fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n",
+    String svg = String.format("<ellipse id=\"%s\" cx=\"%.2f\" cy=\"%.2f\" rx=\"%.2f\" "
+                    + "ry=\"%.2f\" fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n",
             this.name, this.position.getX(), this.position.getY(), this.width / 2, this.height / 2,
-            getColor().getRed(), getColor().getGreen(), getColor().getBlue());
+            getColor().getRed255(), getColor().getGreen255(), getColor().getBlue255());
 
     // Add visibility animation
     String looper = (shouldLoop) ? "base.begin+":"";
@@ -58,8 +58,8 @@ public class Oval extends EasyShape {
       svg += a.getSVG(ticksOverSeconds, shouldLoop) + "\n";
     }
 
-    // closing rect tag
-    svg += "</ellipse>";
+    // closing ellipse tag
+    svg += "</ellipse>\n";
     return svg;
   }
 

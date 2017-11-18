@@ -50,7 +50,7 @@ public class Rectangle extends EasyShape {
 
     // Add visibility animation
     String looper = (shouldLoop) ? "base.begin+":"";
-    svg += String.format("<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\""
+    svg += String.format("    <set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\""
                     + " begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"remove\" />\n", looper,
             appearTime / ticksOverSeconds, (hideTime - appearTime) / ticksOverSeconds);
 
@@ -60,7 +60,7 @@ public class Rectangle extends EasyShape {
     }
 
     // closing rect tag
-    svg += "</rect>";
+    svg += "</rect>\n";
     return svg;
   }
 
