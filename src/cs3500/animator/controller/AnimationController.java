@@ -63,8 +63,21 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
   }
 
   public String getTextFromTextualView() {
-    return this.view.getText(this.model.getShapes(),
+    setActionShapeLinks(initialModelShapes);
+
+    String out = this.view.getText(makeInvisble(initialModelShapes),
         this.model.getActions(), this.rate, this.model.getEndTime());
+
+    List<EasyShape> copy = new ArrayList<EasyShape>(); // = new ArrayList<>(initialModelShapes);
+    for (EasyShape s: initialModelShapes) {
+      copy.add(s.clone());
+    }
+    //copy.forEach(EasyShape::clone);
+
+    this.initialModelShapes = copy;
+    setActionShapeLinks(this.model.getShapes());
+
+    return out;
   }
 
   public void runViewWithVisualComponent() {
@@ -117,7 +130,6 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
       copy.add(s.clone());
     }
     //copy.forEach(EasyShape::clone);
-    System.out.println(String.format("ShapePos: %s\n", copy.get(0).getPostition()));
 
     this.initialModelShapes = copy;
   }

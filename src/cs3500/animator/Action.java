@@ -78,7 +78,7 @@ public abstract class Action implements Textable, CanBeCloned<Action> {
    * @return True if this action is current and should be applied to its shape
    */
   public boolean isCurrent(int time) {
-    return (time >= startTime) && (time < endTime);
+    return (time >= startTime) && (time <= endTime);
   }
 
   @Override

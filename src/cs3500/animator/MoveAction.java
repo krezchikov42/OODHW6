@@ -82,7 +82,8 @@ public class MoveAction extends Action {
             this.startPos.getX(), this.endPos.getX());
     s += String.format("<animate attributeType=\"xml\" begin=\"%s%.2fs\" dur=\"%.2fs\""
                     + " attributeName=\"y\" from=\"%.2f\" to=\"%.2f\" fill=\"freeze\" />",
-            looper, this.startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds,
+            looper,
+        this.startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds,
             this.startPos.getY(), this.endPos.getY());
 
     return s;

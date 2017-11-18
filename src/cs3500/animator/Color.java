@@ -74,7 +74,7 @@ public class Color implements CanBeCloned<Color> {
    * @return red value.
    */
   public int getRed255() {
-    return (int) red * 255;
+    return (int) (red * 255);
   }
 
   /**
@@ -83,7 +83,7 @@ public class Color implements CanBeCloned<Color> {
    * @return green value.
    */
   public int getGreen255() {
-    return (int) green * 255;
+    return (int) (green * 255);
   }
 
   /**
@@ -92,7 +92,7 @@ public class Color implements CanBeCloned<Color> {
    * @return blue value.
    */
   public int getBlue255() {
-    return (int) blue * 255;
+    return (int) (blue * 255);
   }
 
   @Override
