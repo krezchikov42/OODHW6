@@ -1,5 +1,24 @@
 EasyAnimator Documentation/README
 
+How to use the HybridView User Interface
+—————————————————————
+
+The slider at the top changes the rate of the animation in real time
+
+The pause, resume, and restart button pauses, resumes, and restarts the animation
+After pressing restart, you must press play to begin the animation again.
+
+To export to SVG, you simply press export to svg and enter the name of the output file, which will appear in the current
+directory
+
+To control which shapes are viewed/exported to svg, type the name of a shape into the text field and press the button below it.
+This will cause that shape to no longer be viewed in the animation. There is a button to reset visibility settings.
+———————————————————————
+
+
+
+
+
 
 In the code, the term "Animation" refers to a large-scale scene with multiple shapes that is run by the model, and the term
 "action" refers to an animation of one type on one specific shape. An Animation is full of shapes and actions.
@@ -26,6 +45,19 @@ their respective shapes (if it is the proper time for them to do so).
 The Important Classes with broken down methods:
 ////////////////////////////////////////////////
 
+**** Controller ****
+—————————————-
+Combines the model and the view. It has functions getTextFromTextualView, which gets the text from the view
+if the view has a textual aspect, and runViewWithVisualComponent, which opens the animation in visual window
+if the view is a VisualView or HybridView.
+
+**** AnimationController ****
+—————————————————————————
+This class acts as an actionListener for the view when it is a HybridView, and all components of the view,
+when selected or pressed or changed by the user, notify the controller to call certain functions and
+respond accordingly.
+
+
 EasyAnimator
 -----------------------
 This is the class that contains main. It is the command line program that runs a particular view
@@ -41,11 +73,19 @@ AView
 An abstract class that implements View. It abstracts the fields needed by each view and provides
 base implementations of the methods.
 
+**** Hybrid View ****
+———————————
+This view offers the ability to run the animation visually, pause the animation, resume the
+animation, restart the animation, and change the speed of the animation. It also allows the 
+user to select individual shapes by their names that they don’t want to be viewed. Furthermore,
+there is a dialog box that can be opened to export the animation to SVG.
+
+
 VisualView
 -----------------------
 The view that opens a window and displays the animation to the user. It uses swing to draw the
 animation, updating each tick with a given speed rate. It updates by calling the updateAnimation
-method in the model. It has each shape in the model draw itself onto a Graphics obejct, which is
+method in the model. It has each shape in the model draw itself onto a Graphics object, which is
 overseen in a JPanel child class called Animator.
 
 SVGView
@@ -88,9 +128,23 @@ This interface represents a shape.
 
 
 
-////////////////////////////////////////////////
-Changes in Design since last assignment:
-////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+Changes in Design since previous animation assignment:
+//////////////////////////////////////////////////////
+
+The main per-tick function updateAnimation in the model actually utilizes the currentTime now,
+so Actions are able to return the shape’s updated state at a given time, enabling restarting
+and looping.
+
+There is one Controller that can control any type of view, including the newly added HybridView.
+
+The getSVG functions of shapes and views were changed in order to enable looping.
+
+
+
+///////////////////////////////////////////////////
+Changes in Design since first animation assignment:
+///////////////////////////////////////////////////
 
 EasyAnimatorOperations:
     This interface was given a getActions() and getShapes() method that returns a clone of the

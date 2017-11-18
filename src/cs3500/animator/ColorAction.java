@@ -64,6 +64,9 @@ public class ColorAction extends Action {
     double newBlue = Math.min(1, (this.shape.getColor().getBlue()) + this.blueIncrement*currentTime);
     double newGreen = Math.min(1,
             (this.shape.getColor().getGreen()) + this.greenIncrement*currentTime);
+    newRed = Math.max(0, newRed);
+    newGreen = Math.max(0, newGreen);
+    newBlue = Math.max(0, newBlue);
     Color newColor = new Color(newRed, newGreen, newBlue);
 
     shape.setColor(newColor);

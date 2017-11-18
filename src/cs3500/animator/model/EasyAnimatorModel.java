@@ -97,6 +97,9 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
     for (EasyShape s : shapes) {
       ret.add(s);
     }
+
+    ret.sort(Comparator.comparing(EasyShape::getAppearTime));
+
     return ret;
   }
 
