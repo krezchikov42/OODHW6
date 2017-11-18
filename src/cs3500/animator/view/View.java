@@ -9,7 +9,19 @@ import java.util.List;
  */
 public interface View {
 
+  /**
+   * Runs a visual representation.
+   * @param shapes the shapes that will be drawn.
+   */
   public void run(List<EasyShape> shapes);
 
-  public String getText(List<EasyShape> shapes, List<Action> actions, float rate);
+  /**
+   * Represents the a textual representation.
+   * @param shapes the shapes to be described.
+   * @param actions the actions to be described.
+   * @param rate the rate of the animation.
+   * @param endTime the end time of the model
+   * @return
+   */
+  public String getText(List<EasyShape> shapes, List<Action> actions, float rate, int endTime);
 }
