@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.Timer;
@@ -130,7 +132,23 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
 
   private void exportToSVG() {
+    JFrame frame = new JFrame("Save to an SVG file");
 
+    // prompt the user for the name of the output file
+    String name = JOptionPane.showInputDialog(frame, "Name of the output file");
+
+    saveSVGWithOutFileName(name);
+  }
+
+  private void saveSVGWithOutFileName(String fileName) {
+    try {
+      FileWriter write = new FileWriter(fileName, true);
+      PrintWriter print = new PrintWriter(write);
+      print.print(this.view.getText(this.initialModelShapes, this.model.getActions(), this.rate));
+      print.close();
+    } catch (IOException e) {
+      throw new IllegalArgumentException("Can't write to file");
+    }
   }
 
   @Override
