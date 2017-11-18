@@ -37,12 +37,16 @@ public class HybridView extends AView {
    *
    * @return an svg representation of the animation.
    */
-  public String getText(List<EasyShape> shapes, List<Action> actions, float rate) {
+  @Override
+  public String getText(List<EasyShape> shapes, List<Action> actions, float rate,int endTime) {
     String text = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
-        + "     xmlns=\"http://www.w3.org/2000/svg\">\n";
+        + "     xmlns=\"http://www.w3.org/2000/svg\">\n<rect>\n" +
+            "   <animate id=\"base\" begin=\"0;base.end\" dur=\"" + endTime*rate+"ms\"" +
+            " attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
+            "</rect>";
 
     for (EasyShape s : shapes) {
-      text += s.getSVG(rate);
+      text += s.getSVG(rate,loopCheckBox.isSelected());
     }
     text += "\n</svg>";
 
