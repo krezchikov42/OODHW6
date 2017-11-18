@@ -1,16 +1,10 @@
 package cs3500.animator.view;
 
+import cs3500.animator.EasyShape;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import java.util.List;
 import javax.swing.JPanel;
-
-import cs3500.animator.EasyShape;
-import cs3500.animator.model.EasyAnimatorOperations;
 
 class AnimationPanel extends JPanel {
 

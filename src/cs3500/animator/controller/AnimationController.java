@@ -1,26 +1,17 @@
 package cs3500.animator.controller;
 
-import com.sun.xml.internal.ws.addressing.model.ActionNotSupportedException;
 import cs3500.animator.Action;
-import cs3500.animator.EasyAnimator;
 import cs3500.animator.EasyShape;
-import cs3500.animator.model.EasyAnimatorModel;
 import cs3500.animator.model.EasyAnimatorOperations;
-import cs3500.animator.util.AnimationFileReader;
 import cs3500.animator.view.HybridView;
 import cs3500.animator.view.View;
-import cs3500.animator.view.ViewFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.TimerTask;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
@@ -129,7 +120,6 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     for (EasyShape s: initialModelShapes) {
       copy.add(s.clone());
     }
-    //copy.forEach(EasyShape::clone);
 
     this.initialModelShapes = copy;
   }

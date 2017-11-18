@@ -1,17 +1,14 @@
 package cs3500.animator.view;
 
-import static javafx.scene.paint.Color.*;
 
 import cs3500.animator.Action;
 import cs3500.animator.EasyShape;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.TextField;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -21,6 +18,12 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeListener;
 
+/**
+ * Represents an interactive view in which the user can view the animation or export it to SVG.
+ * Supports pausing, resuming, restarting, changing speed with a slider, selecting certain shapes
+ * that should not be viewed or exported.
+ *
+ */
 public class HybridView extends AView {
 
   private boolean window;
@@ -30,7 +33,6 @@ public class HybridView extends AView {
   JTextField textField = null;
   public JCheckBox loopCheckBox = null;
 
-  //return [shape.clone() for shape in shapes if shape not in shapeNames]
 
   /**
    * Returns a String containing an SVG representation of the animation.
@@ -56,6 +58,11 @@ public class HybridView extends AView {
 
   public void setListener(ActionListener l) {this.listener = l;}
 
+  /**
+   * Extracts the text from the shape-exclusion text field.
+   *
+   * @return The value of the field
+   */
   public String getTextFromTextField() {
     String t = this.textField.getText();
     this.textField.setText("");
@@ -89,6 +96,11 @@ public class HybridView extends AView {
     animator.repaint();
   }
 
+  /**
+   * Adds the play, start, and pause button to the main JFrame.
+   *
+   * @param frame the JFrame to add the buttons to
+   */
   private void addButtons(JFrame frame) {
 
     JPanel buttonsPanels = new JPanel();
@@ -108,6 +120,11 @@ public class HybridView extends AView {
     frame.add(buttonsPanels, BorderLayout.PAGE_END);
   }
 
+  /**
+   * Adds the speed variation slider to the top of the given frame.
+   *
+   * @param frame The frame that is added to
+   */
   private void addSlider(JFrame frame) {
 
     JSlider ticksPerSecond = new JSlider(JSlider.HORIZONTAL,
@@ -122,6 +139,11 @@ public class HybridView extends AView {
     frame.add(ticksPerSecond, BorderLayout.PAGE_START);
   }
 
+  /**
+   * Adds the shape selection panel to the frame.
+   *
+   * @param frame the frame that is added to
+   */
   private void addShapeSelectionPanel(JFrame frame) {
 
     // Label prompt
