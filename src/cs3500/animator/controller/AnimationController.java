@@ -62,7 +62,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
   public String getTextFromTextualView() {
     return this.view.getText(this.model.getShapes(),
-        this.model.getActions(), this.rate);
+        this.model.getActions(), this.rate,model.getEndTime());
   }
 
   public void runViewWithVisualComponent() {
