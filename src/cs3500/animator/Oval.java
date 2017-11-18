@@ -42,8 +42,8 @@ public class Oval extends EasyShape {
   @Override
   public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
     // opening ellipse tag
-    String svg = String.format("<ellipse id=\"%s\" cx=\"%.2f\" cy=\"%.2f\" rx=\"%.2f\" "
-                    + "ry=\"%.2f\" fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n",
+    String svg = String.format("<ellipse id=\"%s\" cx=\"%.2f\" cy=\"%.2f\" rx=\"%.0f\" "
+                    + "ry=\"%.0f\" fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n",
             this.name, this.position.getX(), this.position.getY(), this.width / 2, this.height / 2,
             getColor().getRed255(), getColor().getGreen255(), getColor().getBlue255());
 
@@ -53,13 +53,23 @@ public class Oval extends EasyShape {
                     + " begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"remove\" />\n", looper,
             appearTime / ticksOverSeconds, (hideTime - appearTime) / ticksOverSeconds);
 
+    if (shouldLoop) {
+      svg += String.format("<set attributeName=\"cx\" attributeType=\"XML\" to=\"%.2f\" " +
+      "begin=\"base.begin\" />\n", this.position.getX());
+      svg += String.format("<set attributeName=\"cy\" attributeType=\"XML\" to=\"%.2f\" " +
+          "begin=\"base.begin\" />\n", this.position.getY());
+      svg += String.format("<set attributeName=\"fill\" attributeType=\"XML\" "
+              + "to=\"rgb(%d,%d,%d)\" begin=\"base.begin\" />\n",
+          getColor().getRed255(), getColor().getGreen255(), getColor().getBlue255());
+    }
+
     // Add all other animations
     for (Action a : this.actions) {
       svg += a.getSVG(ticksOverSeconds, shouldLoop) + "\n";
     }
 
-    // closing ellipse tag
-    svg += "</ellipse>\n";
+    // closing rect tag
+    svg += "</ellipse>";
     return svg;
   }
 

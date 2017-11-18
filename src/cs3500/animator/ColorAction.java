@@ -58,7 +58,7 @@ public class ColorAction extends Action {
    */
   @Override
   public void applyToShape(int currentTime) {
-    EasyShape clone = shape.clone();
+
     int duration = this.endTime - this.startTime;
     double newRed = Math.min(1, (this.shape.getColor().getRed()) + this.redIncrement*currentTime);
     double newBlue = Math.min(1, (this.shape.getColor().getBlue()) + this.blueIncrement*currentTime);
@@ -66,8 +66,7 @@ public class ColorAction extends Action {
             (this.shape.getColor().getGreen()) + this.greenIncrement*currentTime);
     Color newColor = new Color(newRed, newGreen, newBlue);
 
-    clone.setColor(newColor);
-    //return clone;
+    shape.setColor(newColor);
   }
 
   @Override

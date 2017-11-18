@@ -56,14 +56,12 @@ public class MoveAction extends Action {
    */
   @Override
   public void applyToShape(int currentTime) {
-    EasyShape clone = shape.clone();
+
     double timeElapsed = currentTime - startTime;
     double moveDX = timeElapsed * dx;
     double moveDY = timeElapsed * dy;
-    clone.setPosition(shape.getPostition().add(moveDX, moveDY));
+
     shape.setPosition(getStartPos().add(moveDX, moveDY));
-    //System.out.print(String.format("ClonePos:%s\n", clone.getPostition().toString()));
-    //return clone;
   }
 
   @Override
@@ -82,7 +80,8 @@ public class MoveAction extends Action {
             this.startPos.getX(), this.endPos.getX());
     s += String.format("<animate attributeType=\"xml\" begin=\"%s%.2fs\" dur=\"%.2fs\""
                     + " attributeName=\"y\" from=\"%.2f\" to=\"%.2f\" fill=\"freeze\" />",
-            looper, this.startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds,
+            looper,
+        this.startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds,
             this.startPos.getY(), this.endPos.getY());
 
     return s;

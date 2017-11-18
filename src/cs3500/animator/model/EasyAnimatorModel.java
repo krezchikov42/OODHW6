@@ -1,10 +1,5 @@
 package cs3500.animator.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import cs3500.animator.Action;
 import cs3500.animator.Color;
 import cs3500.animator.ColorAction;
@@ -15,6 +10,10 @@ import cs3500.animator.Point;
 import cs3500.animator.Rectangle;
 import cs3500.animator.ScaleAction;
 import cs3500.animator.util.TweenModelBuilder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Implements the cs3500.animator.model.EasyAnimatorOperations interface and models an Animation
@@ -111,6 +110,11 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
     return ret;
   }
 
+  /**
+   * Returns a copy of the list of shapes in this model.
+   *
+   * @return the shapes
+   */
   public ArrayList<EasyShape> getShapesCopy() {
     ArrayList<EasyShape> ret = new ArrayList<>();
     for (EasyShape s : shapes) {
@@ -159,8 +163,8 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
                                                              float red, float green, float blue,
                                                              int startOfLife,
                                                              int endOfLife) {
-      Oval o = new Oval(yRadius, xRadius, new Point((int) cx, (int) cy), EasyShape.PinHole.Top,
-              name, startOfLife, endOfLife, new Color(red, green, blue));
+      Oval o = new Oval(yRadius, xRadius, new Point( cx,  cy), EasyShape.PinHole.Top,
+              name, startOfLife, endOfLife, new Color((double) red, (double) green, (double) blue));
       this.model.addShape(o);
       return this;
     }
@@ -171,9 +175,9 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
                                                                   float red, float green,
                                                                   float blue, int startOfLife,
                                                                   int endOfLife) {
-      Rectangle r = new Rectangle(width, height, new Point((int) lx, (int) ly),
+      Rectangle r = new Rectangle(width, height, new Point(lx,  ly),
               EasyShape.PinHole.BottomLeft,
-              name, startOfLife, endOfLife, new Color(red, green, blue));
+              name, startOfLife, endOfLife, new Color((double) red, (double) green, (double) blue));
       this.model.addShape(r);
       return this;
     }

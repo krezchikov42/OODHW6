@@ -54,6 +54,16 @@ public class Rectangle extends EasyShape {
                     + " begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"remove\" />\n", looper,
             appearTime / ticksOverSeconds, (hideTime - appearTime) / ticksOverSeconds);
 
+    if (shouldLoop) {
+      svg += String.format("<set attributeName=\"x\" attributeType=\"XML\" to=\"%.2f\" " +
+          "begin=\"base.begin\" />\n", this.position.getX());
+      svg += String.format("<set attributeName=\"y\" attributeType=\"XML\" to=\"%.2f\" " +
+          "begin=\"base.begin\" />\n", this.position.getY());
+      svg += String.format("<set attributeName=\"fill\" attributeType=\"XML\" "
+              + "to=\"rgb(%d,%d,%d)\" begin=\"base.begin\" />\n",
+          getColor().getRed255(), getColor().getGreen255(), getColor().getBlue255());
+    }
+
     // Add all other animations
     for (Action a : this.actions) {
       svg += a.getSVG(ticksOverSeconds, shouldLoop) + "\n";

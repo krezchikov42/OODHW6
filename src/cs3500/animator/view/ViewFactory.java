@@ -1,11 +1,5 @@
 package cs3500.animator.view;
 
-import java.util.List;
-
-import cs3500.animator.Action;
-import cs3500.animator.EasyShape;
-import cs3500.animator.model.EasyAnimatorOperations;
-
 /**
  * Represents a factory that will make a view.
  */
