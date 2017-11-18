@@ -81,7 +81,7 @@ public class ColorAction extends Action {
   public String getSVG(float ticksOverSeconds) {
     return String.format("<animate attributeName=\"fill\" attributeType=\"CSS\"\n"
                     + "           from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\"\n"
-                    + "           begin=\"%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
+                    + "           begin=\"base.begin+%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
             startColor.getRed255(), startColor.getGreen255(), startColor.getBlue255(),
             endColor.getRed255(), endColor.getGreen255(), endColor.getBlue255(),
             startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds);

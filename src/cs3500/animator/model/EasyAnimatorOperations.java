@@ -70,6 +70,8 @@ public interface EasyAnimatorOperations {
    */
   public List<Action> getActions();
 
+  public int getEndTime();
+
 
   void setShapes(List<EasyShape> shapes);
 }

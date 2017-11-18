@@ -81,7 +81,7 @@ public class ScaleAction extends Action {
     return String.format("<animateTransform attributeName=\"transform\" attributeType=\"XML\"\n"
                     + "           type=\"scale\" from=\"%.2f %.2f\" " +
                     "to=\"%.2f %.2f\" additive=\"sum\"\n"
-                    + "           begin=\"%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
+                    + "           begin=\"base.begin+%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
             this.origX, this.origY, this.targetX, this.targetY, this.startTime / ticksOverSeconds,
             this.endTime / ticksOverSeconds);
   }

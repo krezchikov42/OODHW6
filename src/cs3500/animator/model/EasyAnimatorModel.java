@@ -1,6 +1,8 @@
 package cs3500.animator.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import cs3500.animator.Action;
@@ -19,9 +21,10 @@ import cs3500.animator.util.TweenModelBuilder;
  * over a specified time.
  */
 public class EasyAnimatorModel implements EasyAnimatorOperations {
-  int mtime;
+
   private List<Action> actions;
   private List<EasyShape> shapes;
+  private int endTime;
 
 
   /**
@@ -29,7 +32,7 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
    * shapes.
    */
   public EasyAnimatorModel() {
-    mtime = 0;
+
     this.actions = new ArrayList<>();
     this.shapes = new ArrayList<>();
 
@@ -42,8 +45,7 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
 
   @Override
   public void updateAnimation(int time) {
-    int update = time - mtime;
-    mtime = time;
+
     ArrayList<EasyShape> newShapes = new ArrayList<>();
 
 
@@ -70,6 +72,8 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
   @Override
   public void addShape(EasyShape s) {
     this.shapes.add(s);
+    //Finds the shape with the max hide time and gets it's hide time and sets it to end time
+    endTime = Collections.max(shapes, Comparator.comparing(EasyShape::getHideTime)).getHideTime();
   }
 
   @Override
@@ -117,6 +121,11 @@ public class EasyAnimatorModel implements EasyAnimatorOperations {
   @Override
   public void setShapes(List<EasyShape> shapes) {
     this.shapes = shapes;
+  }
+
+  @Override
+  public int getEndTime() {
+    return endTime;
   }
 
   public static final class Builder implements TweenModelBuilder<EasyAnimatorOperations> {

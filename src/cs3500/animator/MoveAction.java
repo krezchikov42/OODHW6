@@ -75,11 +75,11 @@ public class MoveAction extends Action {
 
   @Override
   public String getSVG(float ticksOverSeconds) {
-    String s = String.format("<animate attributeType=\"xml\" begin=\"%.2fs\" dur=\"%.2fs\""
+    String s = String.format("<animate attributeType=\"xml\" begin=\"base.begin+%.2fs\" dur=\"%.2fs\""
                     + " attributeName=\"x\" from=\"%.2f\" to=\"%.2f\" fill=\"freeze\" />\n",
             this.startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds,
             this.startPos.getX(), this.endPos.getX());
-    s += String.format("<animate attributeType=\"xml\" begin=\"%.2fs\" dur=\"%.2fs\""
+    s += String.format("<animate attributeType=\"xml\" begin=\"base.begin+%.2fs\" dur=\"%.2fs\""
                     + " attributeName=\"y\" from=\"%.2f\" to=\"%.2f\" fill=\"freeze\" />",
             this.startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds,
             this.startPos.getY(), this.endPos.getY());

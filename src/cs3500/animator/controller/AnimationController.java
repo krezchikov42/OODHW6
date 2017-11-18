@@ -7,6 +7,7 @@ import cs3500.animator.EasyShape;
 import cs3500.animator.model.EasyAnimatorModel;
 import cs3500.animator.model.EasyAnimatorOperations;
 import cs3500.animator.util.AnimationFileReader;
+import cs3500.animator.view.HybridView;
 import cs3500.animator.view.View;
 import cs3500.animator.view.ViewFactory;
 import java.awt.event.ActionEvent;
@@ -25,25 +26,38 @@ import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * This is the controller that puts together a model and a view.
+ */
 public class AnimationController implements Controller, ActionListener, ChangeListener {
 
   private EasyAnimatorOperations model;
   private List<EasyShape> initialModelShapes;
   private View view;
   private Timer timer;
+  private List<String> shapeNames;
+  private boolean loop;
 
   private int currentTime;
   private float rate;
   private boolean running;
 
+  /**
+   * Makes an Animation Controller.
+   * @param model the model for the controller.
+   * @param view the view for the controller.
+   * @param rate the rate of the animation.
+   */
   public AnimationController(EasyAnimatorOperations model, View view, float rate) {
     this.model = model;
     this.initialModelShapes = model.getShapesCopy();
     this.view = view;
+    shapeNames = new ArrayList<>();
 
     this.currentTime = 0;
     this.rate = rate;
     this.running = false;
+    this.loop = false;
   }
 
   public String getTextFromTextualView() {
@@ -58,9 +72,16 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
       public void actionPerformed(ActionEvent e) {
         if (running) {
           model.updateAnimation(currentTime);
-          view.run(model.getShapes());
 
-          currentTime++;
+          view.run(makeInvisble(model.getShapes()));
+
+          //makes the time loop or not
+          if(loop && currentTime==model.getEndTime()){
+            currentTime = 0;
+          }
+          else {
+            currentTime++;
+          }
         }
       }
     });
@@ -104,17 +125,26 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
   }
 
   private void addToHiddenList() {
+    this.shapeNames.add(((HybridView) this.view).getTextFromTextField());
+  }
+
+
+  private void exportToSVG() {
 
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    this.loop = ((HybridView) this.view).loopCheckBox.isSelected();
+
     String command = e.getActionCommand();
     switch (command) {
       case "Play/Resume": resume(); break;
       case "Pause": pause(); break;
       case "Restart": rewindToStart(); break;
       case "add shape": addToHiddenList(); break;
+      case "reset visibility": makeVisible(); break;
+      case "export to SVG": exportToSVG(); break;
       default: return;
     }
   }
@@ -131,5 +161,29 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     int ticksPerSecond = (int)source.getValue();
     this.rate = (float) ticksPerSecond;
     timer.setDelay((int) (1000.0f / rate));
+  }
+
+  //makes shapes invisible that the user has selected by removing them from the list
+  private List<EasyShape> makeInvisble(List<EasyShape> shapes){
+    List<EasyShape> ret = new ArrayList<>();
+    for(EasyShape shape: shapes){
+      ret.add(shape.clone());
+    }
+
+    ret.removeIf(easyShape ->
+    {
+      boolean match = false;
+      for(String s: shapeNames){
+        match |= easyShape.getName().equals(s);
+      }
+      return match;
+    });
+
+    return ret;
+  }
+
+  //makes all the shapes in the animation visible
+  private void makeVisible(){
+    shapeNames = new ArrayList<>();
   }
 }

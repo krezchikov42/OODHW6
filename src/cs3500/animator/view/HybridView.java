@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
@@ -26,6 +28,7 @@ public class HybridView extends AView {
   ActionListener listener = null;
 
   JTextField textField = null;
+  public JCheckBox loopCheckBox = null;
 
   //return [shape.clone() for shape in shapes if shape not in shapeNames]
 
@@ -47,6 +50,12 @@ public class HybridView extends AView {
   }
 
   public void setListener(ActionListener l) {this.listener = l;}
+
+  public String getTextFromTextField() {
+    String t = this.textField.getText();
+    this.textField.setText("");
+    return t;
+  }
 
   @Override
   public void run(List<EasyShape> shapes) {
@@ -110,20 +119,43 @@ public class HybridView extends AView {
 
   private void addShapeSelectionPanel(JFrame frame) {
 
+    // Label prompt
+    JLabel prompt = new JLabel("Enter a shape name into the text field below");
+
+    // The entire right-side panel
     JPanel selectionPanel = new JPanel();
     selectionPanel.setBackground(Color.lightGray);
 
+    // the text field where shape names are inputted
     textField = new JTextField(20);
-    //textField.setPreferredSize(new Dimension(200, 100));
+
+    // the button that sends the contents of text field to the controller
     JButton goButton = new JButton("add shape");
+    goButton.addActionListener(this.listener);
+    goButton.setBackground(Color.DARK_GRAY);
 
-    JPanel selectedShapesPanel = new JPanel();
-    //selectedShapesPanel.setPreferredSize(new Dimension(200, 800));
+    // the button that resets all visibility to every shape
+    JButton resetVisibilityButton = new JButton("reset visibility");
+    resetVisibilityButton.addActionListener(this.listener);
+    resetVisibilityButton.setBackground(Color.DARK_GRAY);
 
-    selectionPanel.setLayout(new GridLayout(3, 1));
+    // The Button to export to SVG format
+    JButton SVGButton = new JButton("export to SVG");
+    SVGButton.addActionListener(this.listener);
+    SVGButton.setBackground(Color.DARK_GRAY);
 
+    // The Looping checkbox
+    loopCheckBox = new JCheckBox("Looping on:");
+    loopCheckBox.addActionListener(this.listener);
+
+    selectionPanel.setLayout(new GridLayout(6, 1));
+
+    selectionPanel.add(prompt);
     selectionPanel.add(textField);
     selectionPanel.add(goButton);
+    selectionPanel.add(resetVisibilityButton);
+    selectionPanel.add(SVGButton);
+    selectionPanel.add(loopCheckBox);
 
     frame.add(selectionPanel, BorderLayout.LINE_END);
 
