@@ -189,6 +189,8 @@ public abstract class EasyShape implements Textable, CanBeCloned<EasyShape> {
     return s;
   }
 
+  public abstract String getSVG(float ticksOverSeconds, boolean shouldLoop);
+
   public void setPosition(Point position) {
     this.position = position;
   }

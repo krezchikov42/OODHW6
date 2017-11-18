@@ -39,6 +39,7 @@ public class HybridView extends AView {
    */
   @Override
   public String getText(List<EasyShape> shapes, List<Action> actions, float rate,int endTime) {
+    System.out.print("getting text");
     String text = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
         + "     xmlns=\"http://www.w3.org/2000/svg\">\n<rect>\n" +
             "   <animate id=\"base\" begin=\"0;base.end\" dur=\"" + endTime*rate+"ms\"" +

@@ -78,12 +78,13 @@ public class ColorAction extends Action {
   }
 
   @Override
-  public String getSVG(float ticksOverSeconds) {
+  public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
+    String looper = (shouldLoop) ? "base.begin+":"";
     return String.format("<animate attributeName=\"fill\" attributeType=\"CSS\"\n"
                     + "           from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\"\n"
-                    + "           begin=\"base.begin+%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
+                    + "           begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
             startColor.getRed255(), startColor.getGreen255(), startColor.getBlue255(),
-            endColor.getRed255(), endColor.getGreen255(), endColor.getBlue255(),
+            endColor.getRed255(), endColor.getGreen255(), endColor.getBlue255(), looper,
             startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds);
   }
 

@@ -64,7 +64,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
   public String getTextFromTextualView() {
     return this.view.getText(this.model.getShapes(),
-        this.model.getActions(), this.rate);
+        this.model.getActions(), this.rate, this.model.getEndTime());
   }
 
   public void runViewWithVisualComponent() {
@@ -148,7 +148,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     try {
       FileWriter write = new FileWriter(fileName, true);
       PrintWriter print = new PrintWriter(write);
-      print.print(this.view.getText(this.initialModelShapes, this.model.getActions(), this.rate));
+      print.print(this.getTextFromTextualView());
       print.close();
     } catch (IOException e) {
       throw new IllegalArgumentException("Can't write to file");

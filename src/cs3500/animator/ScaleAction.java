@@ -77,13 +77,14 @@ public class ScaleAction extends Action {
   }
 
   @Override
-  public String getSVG(float ticksOverSeconds) {
+  public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
+    String looper = (shouldLoop) ? "base.begin+":"";
     return String.format("<animateTransform attributeName=\"transform\" attributeType=\"XML\"\n"
                     + "           type=\"scale\" from=\"%.2f %.2f\" " +
                     "to=\"%.2f %.2f\" additive=\"sum\"\n"
-                    + "           begin=\"base.begin+%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
-            this.origX, this.origY, this.targetX, this.targetY, this.startTime / ticksOverSeconds,
-            this.endTime / ticksOverSeconds);
+                    + "           begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",
+            this.origX, this.origY, this.targetX, this.targetY, looper,
+    this.startTime / ticksOverSeconds, this.endTime / ticksOverSeconds);
   }
 
   @Override
