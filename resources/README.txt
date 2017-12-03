@@ -102,6 +102,7 @@ The view that returns a text description of the animation. This works by having 
 action in the model return it's own description and then conglomerates them into one big description
 
 
+
 EasyAnimatorOperations
 -----------------------
 This is the interface to represent a model of an animation. It can return a clone of its shapes

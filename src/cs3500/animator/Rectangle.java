@@ -70,7 +70,7 @@ public class Rectangle extends EasyShape {
     }
 
     // closing rect tag
-    svg += "</rect>";
+    svg += "</rect>\n";
     return svg;
   }
 
