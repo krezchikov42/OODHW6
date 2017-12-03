@@ -73,7 +73,7 @@ public class MoveAction extends Action {
 
   @Override
   public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
-    String looper = (shouldLoop) ? "base.begin+":"";
+    String looper = (shouldLoop) ? "base.begin+" : "";
     String s = String.format("<animate attributeType=\"xml\" begin=\"%s%.2fs\" dur=\"%.2fs\""
                     + " attributeName=\"x\" from=\"%.2f\" to=\"%.2f\" fill=\"freeze\" />\n",
             looper, this.startTime / ticksOverSeconds, (endTime - startTime) / ticksOverSeconds,

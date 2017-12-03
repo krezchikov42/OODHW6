@@ -60,10 +60,11 @@ public class ColorAction extends Action {
   public void applyToShape(int currentTime) {
 
     int duration = this.endTime - this.startTime;
-    double newRed = Math.min(1, (this.shape.getColor().getRed()) + this.redIncrement*currentTime);
-    double newBlue = Math.min(1, (this.shape.getColor().getBlue()) + this.blueIncrement*currentTime);
+    double newRed = Math.min(1, (this.shape.getColor().getRed()) + this.redIncrement * currentTime);
+    double newBlue = Math.min(1, (this.shape.getColor().getBlue()) +
+        this.blueIncrement * currentTime);
     double newGreen = Math.min(1,
-            (this.shape.getColor().getGreen()) + this.greenIncrement*currentTime);
+            (this.shape.getColor().getGreen()) + this.greenIncrement * currentTime);
     newRed = Math.max(0, newRed);
     newGreen = Math.max(0, newGreen);
     newBlue = Math.max(0, newBlue);
@@ -81,7 +82,7 @@ public class ColorAction extends Action {
 
   @Override
   public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
-    String looper = (shouldLoop) ? "base.begin+":"";
+    String looper = (shouldLoop) ? "base.begin+" : "";
     return String.format("<animate attributeName=\"fill\" attributeType=\"CSS\"\n"
                     + "           from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\"\n"
                     + "           begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"freeze\" />",

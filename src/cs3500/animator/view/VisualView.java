@@ -19,9 +19,9 @@ public class VisualView extends AView {
     int time = 0;
 
     //makes sure the constructor only happens once
-    if(!window) {
+    if (!window) {
       JFrame frame = new JFrame();
-       animator = new AnimationPanel(shapes);
+      animator = new AnimationPanel(shapes);
 
       frame.setSize(1500, 1000);
       frame.setMinimumSize(new Dimension(1500, 1000));
@@ -32,8 +32,8 @@ public class VisualView extends AView {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       window = true;
     }
-      animator.revalidate();
-      animator.repaint();
+    animator.revalidate();
+    animator.repaint();
   }
 }
 

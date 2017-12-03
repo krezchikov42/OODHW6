@@ -3,7 +3,7 @@ package cs3500.animator.view;
 /**
  * Represents a factory that will make a view.
  */
-public class ViewFactory{
+public class ViewFactory {
 
 
   /**
@@ -21,11 +21,9 @@ public class ViewFactory{
     } else if (s.equals("visual")) {
       //not done
       return new VisualView();
-    }
-    else if (s.equals("interactive")){
+    } else if (s.equals("interactive")) {
       return new HybridView();
-    }
-    else {
+    } else {
       throw new IllegalArgumentException("Not Valid View for Factory");
     }
 

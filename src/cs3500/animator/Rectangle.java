@@ -49,7 +49,7 @@ public class Rectangle extends EasyShape {
             getColor().getRed255(), getColor().getGreen255(), getColor().getBlue255());
 
     // Add visibility animation
-    String looper = (shouldLoop) ? "base.begin+":"";
+    String looper = (shouldLoop) ? "base.begin+" : "";
     svg += String.format("<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\""
                     + " begin=\"%s%.2fs\" dur=\"%.2fs\" fill=\"remove\" />\n", looper,
             appearTime / ticksOverSeconds, (hideTime - appearTime) / ticksOverSeconds);

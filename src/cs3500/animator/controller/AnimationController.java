@@ -37,6 +37,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
   /**
    * Makes an Animation Controller.
+   *
    * @param model the model for the controller.
    * @param view the view for the controller.
    * @param rate the rate of the animation.
@@ -53,6 +54,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     this.loop = false;
   }
 
+  @Override
   public String getTextFromTextualView() {
     setActionShapeLinks(initialModelShapes);
 
@@ -60,7 +62,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
         this.model.getActions(), this.rate, this.model.getEndTime());
 
     List<EasyShape> copy = new ArrayList<EasyShape>(); // = new ArrayList<>(initialModelShapes);
-    for (EasyShape s: initialModelShapes) {
+    for (EasyShape s : initialModelShapes) {
       copy.add(s.clone());
     }
     //copy.forEach(EasyShape::clone);
@@ -71,6 +73,7 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     return out;
   }
 
+  @Override
   public void runViewWithVisualComponent() {
     this.running = true;
 
@@ -82,20 +85,15 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
           view.run(makeInvisble(model.getShapes()));
 
           //makes the time loop or not
-          if(loop && currentTime==model.getEndTime()){
+          if (loop && currentTime == model.getEndTime()) {
             currentTime = 0;
-          }
-          else {
+          } else {
             currentTime++;
           }
         }
       }
     });
     timer.start();
-
-    while(true){
-
-    }
   }
 
   private void pause() {
@@ -111,13 +109,12 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
     this.currentTime = 0;
     // Make new clone
 
-
     setActionShapeLinks(initialModelShapes);
     view.run(initialModelShapes);
     this.model.setShapes(initialModelShapes);
 
     List<EasyShape> copy = new ArrayList<EasyShape>(); // = new ArrayList<>(initialModelShapes);
-    for (EasyShape s: initialModelShapes) {
+    for (EasyShape s : initialModelShapes) {
       copy.add(s.clone());
     }
 
@@ -125,8 +122,8 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
   }
 
   private void setActionShapeLinks(List<EasyShape> shapes) {
-    for (EasyShape s: shapes) {
-      for (Action a: s.getActions()) {
+    for (EasyShape s : shapes) {
+      for (Action a : s.getActions()) {
         a.setShape(s);
       }
     }
@@ -163,13 +160,26 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
     String command = e.getActionCommand();
     switch (command) {
-      case "Play/Resume": resume(); break;
-      case "Pause": pause(); break;
-      case "Restart": rewindToStart(); break;
-      case "add shape": addToHiddenList(); break;
-      case "reset visibility": makeVisible(); break;
-      case "export to SVG": exportToSVG(); break;
-      default: return;
+      case "Play/Resume":
+        resume();
+        break;
+      case "Pause":
+        pause();
+        break;
+      case "Restart":
+        rewindToStart();
+        break;
+      case "add shape":
+        addToHiddenList();
+        break;
+      case "reset visibility":
+        makeVisible();
+        break;
+      case "export to SVG":
+        exportToSVG();
+        break;
+      default:
+        return;
     }
   }
 
@@ -181,23 +191,22 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
 
   @Override
   public void stateChanged(ChangeEvent e) {
-    JSlider source = (JSlider)e.getSource();
-    int ticksPerSecond = (int)source.getValue();
+    JSlider source = (JSlider) e.getSource();
+    int ticksPerSecond = (int) source.getValue();
     this.rate = (float) ticksPerSecond;
     timer.setDelay((int) (1000.0f / rate));
   }
 
   //makes shapes invisible that the user has selected by removing them from the list
-  private List<EasyShape> makeInvisble(List<EasyShape> shapes){
+  private List<EasyShape> makeInvisble(List<EasyShape> shapes) {
     List<EasyShape> ret = new ArrayList<>();
-    for(EasyShape shape: shapes){
+    for (EasyShape shape : shapes) {
       ret.add(shape.clone());
     }
 
-    ret.removeIf(easyShape ->
-    {
+    ret.removeIf(easyShape -> {
       boolean match = false;
-      for(String s: shapeNames){
+      for (String s : shapeNames) {
         match |= easyShape.getName().equals(s);
       }
       return match;
@@ -207,7 +216,22 @@ public class AnimationController implements Controller, ActionListener, ChangeLi
   }
 
   //makes all the shapes in the animation visible
-  private void makeVisible(){
+  private void makeVisible() {
     shapeNames = new ArrayList<>();
+  }
+
+  @Override
+  public boolean isLoop() {
+    return loop;
+  }
+
+  @Override
+  public float getRate() {
+    return rate;
+  }
+
+  @Override
+  public boolean isRunning() {
+    return running;
   }
 }

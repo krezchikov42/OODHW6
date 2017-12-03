@@ -22,7 +22,6 @@ import javax.swing.event.ChangeListener;
  * Represents an interactive view in which the user can view the animation or export it to SVG.
  * Supports pausing, resuming, restarting, changing speed with a slider, selecting certain shapes
  * that should not be viewed or exported.
- *
  */
 public class HybridView extends AView {
 
@@ -40,23 +39,25 @@ public class HybridView extends AView {
    * @return an svg representation of the animation.
    */
   @Override
-  public String getText(List<EasyShape> shapes, List<Action> actions, float rate,int endTime) {
+  public String getText(List<EasyShape> shapes, List<Action> actions, float rate, int endTime) {
     System.out.print("getting text");
     String text = "<svg width=\"700\" height=\"500\" version=\"1.1\"\n"
         + "     xmlns=\"http://www.w3.org/2000/svg\">\n<rect>\n" +
-            "   <animate id=\"base\" begin=\"0;base.end\" dur=\"" + endTime/rate+"s\"" +
-            " attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
-            "</rect>";
+        "   <animate id=\"base\" begin=\"0;base.end\" dur=\"" + endTime / rate + "s\"" +
+        " attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
+        "</rect>";
 
     for (EasyShape s : shapes) {
-      text += s.getSVG(rate,loopCheckBox.isSelected());
+      text += s.getSVG(rate, loopCheckBox.isSelected());
     }
     text += "\n</svg>";
 
     return text;
   }
 
-  public void setListener(ActionListener l) {this.listener = l;}
+  public void setListener(ActionListener l) {
+    this.listener = l;
+  }
 
   /**
    * Extracts the text from the shape-exclusion text field.
@@ -74,7 +75,7 @@ public class HybridView extends AView {
     int time = 0;
 
     //makes sure the constructor only happens once
-    if(!window) {
+    if (!window) {
       JFrame frame = new JFrame();
       animator = new AnimationPanel(shapes);
 
@@ -167,9 +168,9 @@ public class HybridView extends AView {
     resetVisibilityButton.setBackground(Color.DARK_GRAY);
 
     // The Button to export to SVG format
-    JButton SVGButton = new JButton("export to SVG");
-    SVGButton.addActionListener(this.listener);
-    SVGButton.setBackground(Color.DARK_GRAY);
+    JButton svgButton = new JButton("export to SVG");
+    svgButton.addActionListener(this.listener);
+    svgButton.setBackground(Color.DARK_GRAY);
 
     // The Looping checkbox
     loopCheckBox = new JCheckBox("Looping on:");
@@ -181,7 +182,7 @@ public class HybridView extends AView {
     selectionPanel.add(textField);
     selectionPanel.add(goButton);
     selectionPanel.add(resetVisibilityButton);
-    selectionPanel.add(SVGButton);
+    selectionPanel.add(svgButton);
     selectionPanel.add(loopCheckBox);
 
     frame.add(selectionPanel, BorderLayout.LINE_END);

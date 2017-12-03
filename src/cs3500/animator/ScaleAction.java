@@ -64,8 +64,8 @@ public class ScaleAction extends Action {
   @Override
   public void applyToShape(int currentTime) {
     EasyShape clone = shape.clone();
-    clone.setHeight(shape.getHeight()+yincr*currentTime);
-    clone.setWidth(shape.getWidth()+xincr*currentTime);
+    clone.setHeight(shape.getHeight() + yincr * currentTime);
+    clone.setWidth(shape.getWidth() + xincr * currentTime);
     //return clone;
   }
 
@@ -78,7 +78,7 @@ public class ScaleAction extends Action {
 
   @Override
   public String getSVG(float ticksOverSeconds, boolean shouldLoop) {
-    String looper = (shouldLoop) ? "base.begin+":"";
+    String looper = (shouldLoop) ? "base.begin+" : "";
     return String.format("<animateTransform attributeName=\"transform\" attributeType=\"XML\"\n"
                     + "           type=\"scale\" from=\"%.2f %.2f\" " +
                     "to=\"%.2f %.2f\" additive=\"sum\"\n"
